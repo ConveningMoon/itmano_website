@@ -1,0 +1,31 @@
+{
+  "name": "itmano-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node --require ./scripts/patch-fs.js ./node_modules/next/dist/bin/next dev --webpack",
+    "build": "node --require ./scripts/patch-fs.js ./node_modules/next/dist/bin/next build --webpack",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "gsap": "^3.12.5",
+    "lucide-react": "latest",
+    "next": "^16.2.4",
+    "next-mdx-remote": "^6.0.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "latest",
+    "eslint": "^10.2.1",
+    "eslint-config-next": "^16.2.4",
+    "postcss": "latest",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.4.5"
+  }
+}
