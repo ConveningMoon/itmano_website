@@ -20,7 +20,7 @@ export function Button({
   fullWidth = false,
 }: ButtonProps) {
   const base =
-    'inline-flex items-center justify-center gap-2 px-10 py-[18px] rounded-lg text-white font-bold text-[13px] tracking-[0.08em] uppercase no-underline border-none cursor-pointer whitespace-nowrap transition-[filter,box-shadow] duration-200 hover:brightness-110'
+    'inline-flex items-center justify-center gap-2 px-10 py-[18px] rounded-lg text-white font-bold text-[13px] tracking-[0.08em] uppercase no-underline border-none cursor-pointer whitespace-nowrap transition-[filter] duration-200 hover:brightness-110 btn-cta'
   const style = {
     background: 'var(--grad)',
     boxShadow: 'var(--shadow-btn)',
