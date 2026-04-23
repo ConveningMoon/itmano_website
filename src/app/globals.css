@@ -31,6 +31,11 @@ body {
   overflow-x: hidden;
 }
 
+@keyframes cta-pulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(94,175,223,0.30); }
+  50%       { box-shadow: 0 4px 36px rgba(141,78,202,0.60), 0 0 0 8px rgba(141,78,202,0.09); }
+}
+
 @layer utilities {
   .gradient-text {
     background: var(--grad);
@@ -52,6 +57,14 @@ body {
   .reveal-right {
     opacity: 0;
     transform: translateX(32px);
+  }
+
+  .btn-cta {
+    animation: cta-pulse 2.2s ease-in-out infinite;
+  }
+
+  .btn-cta:hover {
+    animation-play-state: paused;
   }
 }
 
