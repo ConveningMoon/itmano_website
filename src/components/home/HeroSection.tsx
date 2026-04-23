@@ -29,7 +29,7 @@ export function HeroSection() {
     <section
       ref={heroRef}
       className="relative overflow-hidden text-center"
-      style={{ background: 'var(--navy)', padding: '96px 0 80px' }}
+      style={{ background: 'var(--navy)', padding: '50px 0 50px' }}
     >
       {/* Glows */}
       <div
@@ -62,8 +62,9 @@ export function HeroSection() {
           className="reveal text-white font-black leading-[1.05] tracking-[-0.03em] mb-5"
           style={{ fontSize: 'clamp(36px, 5vw, 68px)', textWrap: 'pretty' } as React.CSSProperties}
         >
-          El sistema con el que las firmas inmobiliarias de 7 cifras generan 5+ cierres mensuales
-          <span className="gradient-text"> — sin más ads, sin más volumen, sin más azar.</span>
+          El sistema con el que las
+          <span className="gradient-text"> firmas inmobiliarias de 7 cifras </span>
+          generan 5+ cierres mensuales
         </h1>
 
         {/* Sub */}
@@ -71,7 +72,7 @@ export function HeroSection() {
           className="reveal font-normal text-white/[0.58] leading-[1.72] max-w-[640px] mx-auto mb-11"
           style={{ fontSize: 'clamp(16px, 1.7vw, 19px)' }}
         >
-          Construimos la infraestructura que atrae, filtra y convierte solo las oportunidades con intención real de compra — para que tu tiempo valga lo que tus comisiones dicen que vale.
+          Construimos sistemas de IA que automatizan captación, filtrado y seguimiento para que solo lleguen a tu agenda conversaciones con intención real de compra.
         </p>
 
         {/* VSL */}
@@ -83,8 +84,8 @@ export function HeroSection() {
               Descubre el Sistema FCI en 12 minutos
             </p>
             <p className="text-[14px] text-white/45 mb-7 leading-[1.6]">
-              El proceso exacto que implementamos con agentes y firmas en US, España y EAU<br className="hidden md:block" />
-              para convertir su inversión publicitaria en pipeline predecible y cualificado.
+              El framework que implementamos con agentes y firmas en US, España y EAU<br className="hidden md:block" />
+              para activar workflows de IA y automatizaciones que convierten inversión en pipeline predecible y cualificado.
             </p>
             <a
               href="#cta"

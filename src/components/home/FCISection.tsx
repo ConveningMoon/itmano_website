@@ -18,13 +18,13 @@ const PHASES = [
   {
     num: 'Fase 03',
     title: 'Nurturing con IA',
-    body: 'Un lead que no está listo hoy puede estar listo en 90 días. La inteligencia artificial mantiene la relación activa, personalizada y oportuna — mientras tú cierras con quien sí está listo ahora mismo.',
-    tags: ['IA conversacional', 'Email flows', 'WhatsApp automation'],
+    body: 'Un lead que no está listo hoy puede estar listo en 90 días. Activamos workflows de IA que personalizan el seguimiento por etapa, canal y comportamiento para mantener cada oportunidad viva sin trabajo operativo manual.',
+    tags: ['IA conversacional', 'Workflows automatizados', 'WhatsApp automation'],
   },
   {
     num: 'Fase 04',
     title: 'Pipeline Predecible',
-    body: 'Cuando los tres pilares trabajan juntos, el resultado es matemático. Más reuniones con perfil real. Ciclos de venta más cortos. Un negocio que no depende del azar ni del mercado — sino de tu sistema.',
+    body: 'Cuando los pilares y las automatizaciones trabajan juntos, el resultado es matemático. Más reuniones con perfil real, menos fricción operativa y un proceso comercial que escala sin depender de improvisación humana.',
     tags: ['Demo call 15–20 min', 'Propuesta estructurada'],
   },
 ]
@@ -61,7 +61,7 @@ export function FCISection() {
             <span className="gradient-text">Genera certeza.</span>
           </h2>
           <p className="text-[17px] leading-[1.7] max-w-[580px] mx-auto" style={{ color: 'rgba(255,255,255,0.5)' }}>
-            Cuatro fases que convierten tu inversión publicitaria en pipeline real — sin volumen inútil, sin seguimiento manual, sin depender de quién te llame esta semana.
+            Cuatro fases conectadas por IA, workflows y automatizaciones que convierten tu inversión publicitaria en pipeline real — sin volumen inútil, sin seguimiento manual y sin depender de quién te escriba esta semana.
           </p>
         </div>
 

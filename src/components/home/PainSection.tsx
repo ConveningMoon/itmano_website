@@ -62,7 +62,7 @@ export function PainSection() {
   }, [])
 
   return (
-    <section ref={ref} className="py-24 bg-white max-[600px]:py-16">
+    <section ref={ref} className="py-[50px] bg-white max-[600px]:py-16">
       <Container>
         <div className="text-center mb-14 reveal">
           <div className="text-[11px] font-bold tracking-[0.14em] uppercase text-purple mb-[14px]">El diagnóstico</div>

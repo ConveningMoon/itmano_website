@@ -12,14 +12,14 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <CTASection />
       <GradientDivider />
-      <PainSection />
       <FCISection />
-      <FounderSection />
+      <PainSection />  
       <ProofSection />
       <FilterSection />
-      <CTASection />
       <LeadMagnetSection />
+      <FounderSection />
     </>
   )
 }
