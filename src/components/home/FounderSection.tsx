@@ -5,7 +5,7 @@ import { Container } from '@/components/ui/Container'
 
 const STATS = [
   { num: '+6', label: 'Años en ventas B2B' },
-  { num: '3', label: 'Mercados activos' },
+  { num: '4', label: 'Mercados activos' },
   { num: '3', label: 'Idiomas operativos' },
 ]
 
@@ -49,7 +49,7 @@ export function FounderSection() {
               className="absolute -bottom-5 -right-5 bg-white rounded-xl px-5 py-4 max-[900px]:hidden"
               style={{ boxShadow: 'var(--shadow-card-lg)' }}
             >
-              <div className="text-[26px] font-black leading-none mb-[3px] gradient-text">3</div>
+              <div className="text-[26px] font-black leading-none mb-[3px] gradient-text">4</div>
               <div className="text-[11px] text-gray-text font-medium max-w-[80px] leading-[1.4]">mercados activos</div>
             </div>
           </div>
@@ -66,7 +66,7 @@ export function FounderSection() {
               Construí ITMANO porque vi que los mejores agentes del mercado seguían perdiendo oportunidades por un motivo concreto: nadie les había dado el sistema para captarlas con criterio. No el mercado. No la suerte. El sistema.
             </p>
             <p className="text-[16px] text-gray-text leading-[1.78] mb-7">
-              Con operaciones en Estados Unidos, España y Emiratos Árabes, trabajamos exclusivamente con profesionales que ya tienen tracción real y quieren escalar con estructura — no con volumen. Si llegas aquí buscando atajos, no somos tu opción.
+              Con operaciones en Estados Unidos, España, Emiratos Árabes e Indonesia, trabajamos exclusivamente con profesionales que ya tienen tracción real y quieren escalar con estructura — no con volumen. Si llegas aquí buscando atajos, no somos tu opción.
             </p>
 
             <div className="flex border border-gray-mid rounded-xl overflow-hidden mb-7 max-[600px]:flex-col">

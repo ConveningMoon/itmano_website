@@ -50,7 +50,7 @@ const jsonLd = {
   url: 'https://www.itmano.com',
   logo: 'https://www.itmano.com/assets/logo-wordmark.png',
   description: 'Growth Partner premium especializado en real estate',
-  areaServed: ['US', 'ES', 'AE'],
+  areaServed: ['US', 'ES', 'AE', 'ID'],
   founder: {
     '@type': 'Person',
     name: 'James Dylan',

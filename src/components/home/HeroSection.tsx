@@ -84,7 +84,7 @@ export function HeroSection() {
               Descubre el Sistema FCI en 12 minutos
             </p>
             <p className="text-[14px] text-white/45 mb-7 leading-[1.6]">
-              El framework que implementamos con agentes y firmas en US, España y EAU<br className="hidden md:block" />
+              El framework que implementamos con agentes y firmas en US, España, EAU e Indonesia<br className="hidden md:block" />
               para activar workflows de IA y automatizaciones que convierten inversión en pipeline predecible y cualificado.
             </p>
             <a
@@ -99,7 +99,7 @@ export function HeroSection() {
 
         {/* Credibility */}
         <div className="reveal flex gap-7 justify-center mt-6 flex-wrap max-[600px]:flex-col max-[600px]:gap-2 max-[600px]:items-center">
-          {['US · ES · EAU', 'Sistema propietario FCI', 'Sin compromiso · 30 minutos'].map((item) => (
+          {['US · ES · EAU · ID', 'Sistema propietario FCI', 'Sin compromiso · 30 minutos'].map((item) => (
             <div key={item} className="flex items-center gap-[7px] text-[12px] text-white/[0.35] font-semibold tracking-[0.04em]">
               <span className="w-[4px] h-[4px] rounded-full flex-shrink-0" style={{ background: 'var(--blue)', opacity: 0.5 }} aria-hidden="true" />
               {item}

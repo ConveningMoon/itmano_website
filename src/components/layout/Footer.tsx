@@ -19,7 +19,7 @@ export function Footer() {
               © 2026 ITMANO Technology Services. Todos los derechos reservados.
             </p>
             <p className="text-[12px] text-white/[0.22] text-center mt-1">
-              Growth Partner · Real Estate · US · ES · EAU
+              Growth Partner · Real Estate · US · ES · EAU · ID
             </p>
           </div>
           <div>
