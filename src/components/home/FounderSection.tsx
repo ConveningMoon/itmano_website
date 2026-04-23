@@ -84,8 +84,8 @@ export function FounderSection() {
 
             <a
               href="#cta"
-              className="inline-flex items-center justify-center gap-2 px-10 py-[18px] rounded-lg text-white font-bold text-[13px] tracking-[0.08em] uppercase transition-[filter,box-shadow] duration-200 hover:brightness-110"
-              style={{ background: 'var(--grad)', boxShadow: 'var(--shadow-btn)' }}
+              className="inline-flex items-center justify-center gap-2 px-10 py-[18px] rounded-lg text-white font-bold text-[13px] tracking-[0.08em] uppercase transition-[filter] duration-200 hover:brightness-110 btn-cta"
+              style={{ background: 'var(--grad)' }}
             >
               Habla con James
             </a>
