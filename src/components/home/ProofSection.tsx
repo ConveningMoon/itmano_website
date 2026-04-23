@@ -9,13 +9,11 @@ const TESTIMONIALS = [
     text: '"Pasamos de depender 100% de referidos a tener un pipeline constante de prospectos cualificados. El sistema de filtrado fue el mayor cambio estructural que hemos implementado en la agencia."',
     name: 'Ana Martínez',
     role: 'Directora · Jana Real Estate · Miami',
-    initial: 'A',
   },
   {
     text: '"En tres meses, el porcentaje de leads que llegaba a reunión con perfil real de compra pasó del 15% al 62%. Ahora invierto mi tiempo donde tiene sentido económico — y se nota en el P&L."',
     name: 'Carlos Ruiz',
     role: 'Broker · Azul Inversiones · Madrid',
-    initial: 'C',
   },
 ]
 
@@ -83,11 +81,13 @@ export function ProofSection() {
               <p className="text-[15px] text-navy leading-[1.72] mb-[22px] font-medium italic">{t.text}</p>
               <div className="flex items-center gap-3">
                 <div
-                  className="w-[42px] h-[42px] rounded-full flex items-center justify-center text-[16px] font-bold text-white flex-shrink-0"
+                  className="w-[42px] h-[42px] rounded-full flex items-center justify-center flex-shrink-0"
                   style={{ background: 'var(--grad-135)' }}
-                  aria-hidden="true"
                 >
-                  {t.initial}
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                    <circle cx="11" cy="7.5" r="4" fill="white" />
+                    <path d="M2 21c0-4.97 4.03-9 9-9s9 4.03 9 9" fill="white" />
+                  </svg>
                 </div>
                 <div>
                   <div className="text-[13px] font-bold text-navy mb-0.5">{t.name}</div>
