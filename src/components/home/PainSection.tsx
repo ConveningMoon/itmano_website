@@ -9,8 +9,8 @@ const PAIN_CARDS = [
         <path d="M4 4l14 14M8 4h10v10" />
       </svg>
     ),
-    title: 'Inviertes en ads. Recibes ruido.',
-    body: 'Gastas $2,000 en Meta. Llegan 40 leads. 32 no contestan. 6 no tienen presupuesto. 1 compra — si tienes suerte. Eso no es marketing, es una lotería cara que tú estás financiando.',
+    title: 'Inviertes en ADS y solo recibes curiosos',
+    body: 'Gastas $2,000 en Meta. Llegan 40 leads: 20 preguntan precio, 12 no contestan, 6 no tienen presupuesto. 1 cierre — si tienes suerte. Eso no es marketing, es una lotería cara que tú estás financiando.',
   },
   {
     icon: (
@@ -18,7 +18,7 @@ const PAIN_CARDS = [
         <circle cx="11" cy="11" r="8" /><path d="M11 7v4l3 3" />
       </svg>
     ),
-    title: 'Vives de referidos o mueres.',
+    title: 'Vives de referidos o mueres',
     body: 'Enero fue increíble porque Carlos te mandó dos clientes. Febrero fue un desastre porque nadie te mandó nada. Esa montaña rusa tiene nombre: dependencia total de variables que no controlas.',
   },
   {
@@ -27,8 +27,8 @@ const PAIN_CARDS = [
         <rect x="3" y="5" width="16" height="14" rx="2" /><path d="M7 5V3M15 5V3M3 9h16" />
       </svg>
     ),
-    title: 'Tus leads viven en WhatsApp y la memoria.',
-    body: 'Tienes un prospecto caliente en el chat, otro en el correo de hace tres semanas, y uno en un papel encima de tu escritorio. Alguien va a cerrar con ellos. Probablemente no seas tú.',
+    title: 'Tus leads viven en WhatsApp y la memoria',
+    body: 'Tienes un prospecto caliente en el chat, otro en el correo de hace tres semanas, y uno en un papel encima de tu escritorio. Alguien va a cerrar con ellos. Seguramente no seas tú.',
   },
   {
     icon: (
@@ -36,7 +36,7 @@ const PAIN_CARDS = [
         <path d="M3 18l7-7 4 4 7-9" />
       </svg>
     ),
-    title: 'Más presupuesto = más caos.',
+    title: 'Más presupuesto = más caos',
     body: 'Duplicas la inversión en Meta. Llegan el doble de leads. Tu equipo se satura. La tasa de cierre cae a la mitad. El costo por cliente se dispara. El problema nunca fue el volumen.',
   },
 ]
@@ -67,10 +67,10 @@ export function PainSection() {
         <div className="text-center mb-14 reveal">
           <div className="text-[11px] font-bold tracking-[0.14em] uppercase text-purple mb-[14px]">El diagnóstico</div>
           <h2 className="font-bold leading-[1.2] tracking-[-0.01em] mb-4" style={{ fontSize: 'clamp(28px, 3.2vw, 40px)' }}>
-            Reconoces esto.<br />Y ya estás harto.
+            Si reconoces algo de esto<br />Es momento de que haga un cambio
           </h2>
           <p className="text-[17px] text-gray-text leading-[1.7] max-w-[540px] mx-auto">
-            No es mala suerte. No es el mercado. Es que nadie te dio el sistema correcto — y llevas años compensando con esfuerzo lo que debería resolver una infraestructura.
+            No es mala suerte. No es el mercado. No eres tú <br /> Es que no tienes un sistema — y llevas años compensando con esfuerzo lo que debería resolver una infraestructura.
           </p>
         </div>
 

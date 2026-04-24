@@ -7,25 +7,25 @@ const PHASES = [
     num: 'Fase 01',
     title: 'Atracción con Intención',
     body: 'No anunciamos para todos. Construimos campañas diseñadas para interceptar exactamente al comprador con presupuesto, timeline y motivación real. Cada euro de tu inversión trabaja con criterio — no con esperanza.',
-    tags: ['Meta Ads', 'Google Ads', 'Segmentación ICP'],
+    tags: ['Meta Ads', 'Segmentación ICP', 'Posicionamiento SEO', 'Chatbots', 'Marca Personal'],
   },
   {
     num: 'Fase 02',
     title: 'Filtrado Automático',
-    body: 'El 90% de los leads se descalifican antes de tocar tu agenda. Cuestionarios de entrada, scoring automático y barreras de calificación hacen el trabajo que antes hacías tú — sin descanso, sin errores, sin piedad.',
-    tags: ['Scoring automático', 'Formularios de entrada'],
+    body: 'El 90% de los leads se descalifican antes de tocar tu agenda. Cuestionarios de entrada, scoring automático y barreras de calificación hacen el trabajo que antes hacías tú — sin descanso, sin errores, sin gastos absurdos.',
+    tags: ['Scoring automático', 'Formularios de entrada', 'Automatización de procesos'],
   },
   {
     num: 'Fase 03',
     title: 'Nurturing con IA',
     body: 'Un lead que no está listo hoy puede estar listo en 90 días. Activamos workflows de IA que personalizan el seguimiento por etapa, canal y comportamiento para mantener cada oportunidad viva sin trabajo operativo manual.',
-    tags: ['IA conversacional', 'Workflows automatizados', 'WhatsApp automation'],
+    tags: ['IA conversacional', 'Workflows automatizados', 'WhatsApp automation', 'Email marketing'],
   },
   {
     num: 'Fase 04',
     title: 'Pipeline Predecible',
     body: 'Cuando los pilares y las automatizaciones trabajan juntos, el resultado es matemático. Más reuniones con perfil real, menos fricción operativa y un proceso comercial que escala sin depender de improvisación humana.',
-    tags: ['Demo call 15–20 min', 'Propuesta estructurada'],
+    tags: ['Demo call 15–20 min', 'Propuesta estructurada', 'Leads cualificados', 'Seguimiento automático'],
   },
 ]
 
@@ -50,18 +50,18 @@ export function FCISection() {
   }, [])
 
   return (
-    <section ref={ref} id="sistema" className="py-24 bg-navy max-[600px]:py-16">
+    <section ref={ref} id="sistema" className="py-12 bg-navy max-[600px]:py-16">
       <Container>
         <div className="text-center mb-16 reveal">
           <div className="text-[11px] font-bold tracking-[0.14em] uppercase mb-[14px]" style={{ color: 'rgba(94,175,223,0.9)' }}>
-            Sistema Propietario
+            Sistema Inmobiliario de nueva generación
           </div>
           <h2 className="font-bold leading-[1.2] tracking-[-0.01em] mb-4 text-white" style={{ fontSize: 'clamp(28px, 3.2vw, 40px)' }}>
-            El Sistema FCI no genera leads.<br />
-            <span className="gradient-text">Genera certeza.</span>
+            El Sistema FCI no genera leads<br />
+            <span className="gradient-text">Genera clientes, seguridad, crecimiento y predictibilidad</span>
           </h2>
           <p className="text-[17px] leading-[1.7] max-w-[580px] mx-auto" style={{ color: 'rgba(255,255,255,0.5)' }}>
-            Cuatro fases conectadas por IA, workflows y automatizaciones que convierten tu inversión publicitaria en pipeline real — sin volumen inútil, sin seguimiento manual y sin depender de quién te escriba esta semana.
+            Cuatro fases conectadas por IA, workflows y automatizaciones que convierten tu inversión publicitaria en pipeline real — sin volumen inútil, sin seguimiento manual y sin depender de quién te escriba esta semana o del ánimo del mercado
           </p>
         </div>
 
@@ -96,10 +96,10 @@ export function FCISection() {
         <div className="text-center reveal">
           <a
             href="#cta"
-            className="inline-flex items-center justify-center gap-2 px-10 py-[18px] rounded-lg text-white font-bold text-[13px] tracking-[0.08em] uppercase transition-[filter,box-shadow] duration-200 hover:brightness-110"
-            style={{ background: 'var(--grad)', boxShadow: 'var(--shadow-btn)' }}
+            className="inline-flex items-center justify-center gap-2 px-10 py-[18px] rounded-lg text-white font-bold text-[13px] tracking-[0.08em] uppercase transition-[filter] duration-200 hover:brightness-110 btn-cta"
+            style={{ background: 'var(--grad)' }}
           >
-            Ver si aplica a mi negocio
+            Click aquí para aplicarlo a tu negocio
           </a>
         </div>
       </Container>

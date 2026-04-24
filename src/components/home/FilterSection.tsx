@@ -5,14 +5,14 @@ import { Container } from '@/components/ui/Container'
 const NO_ITEMS = [
   'Estás comenzando y todavía no tienes historial de cierres reales',
   'Buscas leads baratos o resultados milagrosos en dos semanas',
-  'No cuentas con $1,000/mes mínimo de inversión en publicidad',
+  'No cuentas con $500/mes mínimo de inversión en publicidad',
   'Quieres más volumen de contactos sin cambiar nada de tu proceso',
-  'No estás dispuesto a implementar sistemas ni a rendir cuentas',
+  'No estás dispuesto a hacer algo que nunca hiciste para obtener algo que nunca tuviste',
 ]
 
 const YES_ITEMS = [
   'Ya tienes operación, tracción y transacciones cerradas en real estate',
-  'Puedes invertir mínimo $1,000/mes en publicidad digital de forma sostenida',
+  'Puedes invertir mínimo $500/mes en publicidad digital de forma sostenida',
   'Quieres un sistema predecible, no otro proveedor de trucos de marketing',
   'Priorizas la calidad del lead sobre el volumen de contactos',
   'Estás dispuesto a implementar procesos, automatización y disciplina',
@@ -60,15 +60,15 @@ export function FilterSection() {
   }, [])
 
   return (
-    <section ref={ref} className="py-24 bg-white max-[600px]:py-16">
+    <section ref={ref} className="py-12 bg-white max-[600px]:py-16">
       <Container>
         <div className="text-center mb-14 reveal">
-          <div className="text-[11px] font-bold tracking-[0.14em] uppercase text-purple mb-[14px]">Posicionamiento</div>
+          <div className="text-[11px] font-bold tracking-[0.14em] uppercase text-purple mb-[14px]">¿Es esto para tí?</div>
           <h2 className="font-bold leading-[1.2] tracking-[-0.01em] mb-4" style={{ fontSize: 'clamp(28px, 3.2vw, 40px)' }}>
-            Somos selectivos.<br />Por diseño.
+            Somos selectivos<br />Cada plan es personalizado
           </h2>
           <p className="text-[17px] text-gray-text leading-[1.7] max-w-[520px] mx-auto">
-            Trabajamos con un número limitado de clientes simultáneamente. No por exclusividad artificial — porque los resultados requieren atención real y los sistemas requieren tiempo para construirse bien.
+            Trabajamos con un número limitado de clientes simultáneamente. No por exclusividad artificial — porque trabajamos mano a mano con nuestros clientes en cada paso
           </p>
         </div>
 

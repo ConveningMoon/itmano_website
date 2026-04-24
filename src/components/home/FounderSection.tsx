@@ -5,7 +5,7 @@ import { Container } from '@/components/ui/Container'
 
 const STATS = [
   { num: '+6', label: 'Años en ventas B2B' },
-  { num: '4', label: 'Mercados activos' },
+  { num: '+130', label: 'Clientes satisfechos' },
   { num: '3', label: 'Idiomas operativos' },
 ]
 
@@ -49,24 +49,25 @@ export function FounderSection() {
               className="absolute -bottom-5 -right-5 bg-white rounded-xl px-5 py-4 max-[900px]:hidden"
               style={{ boxShadow: 'var(--shadow-card-lg)' }}
             >
-              <div className="text-[26px] font-black leading-none mb-[3px] gradient-text">4</div>
-              <div className="text-[11px] text-gray-text font-medium max-w-[80px] leading-[1.4]">mercados activos</div>
+              <div className="text-[26px] font-black leading-none mb-[3px] gradient-text">+4</div>
+              <div className="text-[11px] text-gray-text font-medium max-w-[80px] leading-[1.4]">Países Activos</div>
             </div>
           </div>
 
           {/* Content */}
           <div className="reveal-right">
-            <div className="text-[11px] font-bold tracking-[0.14em] uppercase text-purple mb-[14px]">El fundador</div>
+            <div className="text-[11px] font-bold tracking-[0.14em] uppercase text-purple mb-[14px]">Fundador</div>
             <h2 className="font-black text-navy leading-[1.05] tracking-[-0.025em] mb-2" style={{ fontSize: 'clamp(30px, 3.5vw, 44px)' }}>
               James Dylan
             </h2>
-            <div className="text-[13px] font-bold tracking-[0.10em] uppercase text-purple mb-5">Fundador · ITMANO</div>
+            <div className="text-[13px] font-bold tracking-[0.10em] uppercase text-purple mb-5">CEO · ITMANO</div>
             <div className="w-10 h-[2px] rounded-sm mb-6" style={{ background: 'var(--grad)' }} aria-hidden="true" />
             <p className="text-[16px] text-gray-text leading-[1.78] mb-4">
-              Construí ITMANO porque vi que los mejores agentes del mercado seguían perdiendo oportunidades por un motivo concreto: nadie les había dado el sistema para captarlas con criterio. No el mercado. No la suerte. El sistema.
+              Construí ITMANO porque vi que los mejores agentes del mercado seguían perdiendo oportunidades por dos motivos concretos: uno, no tenían un sistema que capte con datos reales y predecibles. Y dos, perdían la mayoría de su tiempo atendiendo llamadas de perfiles que casi nunca terminaban en venta. 
+			  No por el mercado. No por la suerte. Por la falta de un sistema y dependencia de procesos manuales.
             </p>
             <p className="text-[16px] text-gray-text leading-[1.78] mb-7">
-              Con operaciones en Estados Unidos, España, Emiratos Árabes e Indonesia, trabajamos exclusivamente con profesionales que ya tienen tracción real y quieren escalar con estructura — no con volumen. Si llegas aquí buscando atajos, no somos tu opción.
+              Con operaciones en Estados Unidos, España, Emiratos Árabes e Indonesia, trabajamos exclusivamente con profesionales que ya tienen tracción real y quieren escalar con estructura — no solo con volumen. Si llegas aquí buscando atajos, no somos tu opción.
             </p>
 
             <div className="flex border border-gray-mid rounded-xl overflow-hidden mb-7 max-[600px]:flex-col">

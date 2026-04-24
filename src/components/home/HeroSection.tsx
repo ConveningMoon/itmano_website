@@ -72,7 +72,7 @@ export function HeroSection() {
           className="reveal font-normal text-white/[0.58] leading-[1.72] max-w-[640px] mx-auto mb-11"
           style={{ fontSize: 'clamp(16px, 1.7vw, 19px)' }}
         >
-          Construimos sistemas de IA que automatizan captación, filtrado y seguimiento para que solo lleguen a tu agenda conversaciones con intención real de compra.
+          Construimos sistemas de IA que automatizan captación, filtrado y seguimiento para que solo lleguen a tu agenda conversaciones con intención real de compra o venta
         </p>
 
         {/* VSL */}
@@ -81,25 +81,25 @@ export function HeroSection() {
 
           <div className="mt-7">
             <p className="text-[17px] font-bold text-white mb-[6px]">
-              Descubre el Sistema FCI en 12 minutos
+              Descubre el Sistema FCI en 3 minutos
             </p>
             <p className="text-[14px] text-white/45 mb-7 leading-[1.6]">
               El framework que implementamos con agentes y firmas en US, España, EAU e Indonesia<br className="hidden md:block" />
-              para activar workflows de IA y automatizaciones que convierten inversión en pipeline predecible y cualificado.
+              para activar workflows de IA y automatizaciones que convierten inversión en pipeline predecible y cualificado
             </p>
             <a
               href="#cta"
               className="inline-flex items-center justify-center gap-2 px-10 py-[18px] rounded-lg text-white font-bold text-[13px] tracking-[0.08em] uppercase transition-[filter] duration-200 hover:brightness-110 btn-cta"
               style={{ background: 'var(--grad)' }}
             >
-              Agendar sesión estratégica gratuita
+              Agendar llamada demo gratuita
             </a>
           </div>
         </div>
 
         {/* Credibility */}
         <div className="reveal flex gap-7 justify-center mt-6 flex-wrap max-[600px]:flex-col max-[600px]:gap-2 max-[600px]:items-center">
-          {['US · ES · EAU · ID', 'Sistema propietario FCI', 'Sin compromiso · 30 minutos'].map((item) => (
+          {['US · ES · EAU · ID', 'Sin más anuncios genéricos', 'Solo leads cualificados', 'Sin más seguimiento manual'].map((item) => (
             <div key={item} className="flex items-center gap-[7px] text-[12px] text-white/[0.35] font-semibold tracking-[0.04em]">
               <span className="w-[4px] h-[4px] rounded-full flex-shrink-0" style={{ background: 'var(--blue)', opacity: 0.5 }} aria-hidden="true" />
               {item}

@@ -29,9 +29,9 @@ export function Header() {
             <a href="#fundador" className="text-[12px] font-semibold text-white/55 no-underline tracking-[0.06em] uppercase hover:text-white/90 transition-colors">
               Nosotros
             </a>
-            <a href="/recursos" className="text-[12px] font-semibold text-white/55 no-underline tracking-[0.06em] uppercase hover:text-white/90 transition-colors">
+            {/* <a href="/recursos" className="text-[12px] font-semibold text-white/55 no-underline tracking-[0.06em] uppercase hover:text-white/90 transition-colors">
               Recursos
-            </a>
+            </a> */}
           </nav>
 
           {/* Desktop CTA */}

@@ -53,24 +53,24 @@ export function CTASection() {
   }, [])
 
   return (
-    <section ref={ref} id="cta" className="py-24 bg-white text-center max-[600px]:py-16">
+    <section ref={ref} id="cta" className="py-12 bg-white text-center max-[600px]:py-16">
       <Container>
         <div className="reveal mb-7">
-          <Badge>Sesión Estratégica · Gratuita</Badge>
+          <Badge>Sesión Demo · Gratuita</Badge>
         </div>
 
         <h2
           className="reveal font-bold text-navy leading-[1.2] tracking-[-0.01em] max-w-[660px] mx-auto mb-4"
           style={{ fontSize: 'clamp(28px, 3.2vw, 40px)' }}
         >
-          30 minutos para diseñar tu sistema de automatización comercial
+          Agenda una llamada de 30 minutos para diseñar tu propio sistema personalizado y automatizado
         </h2>
 
         <p
           className="reveal text-[17px] leading-[1.7] max-w-[540px] mx-auto mb-[52px]"
           style={{ color: 'var(--gray-text)' }}
         >
-          No es una llamada de ventas. Es un diagnóstico estratégico. Analizamos tu captación actual, detectamos qué parte aún depende de trabajo manual y te mostramos cómo convertirlo en un flujo automatizado con IA.
+          No es una llamada de ventas. Es un diagnóstico estratégico. Analizamos tu captación actual, detectamos qué parte aún depende de trabajo manual y te mostramos cómo convertirlo en un flujo automatizado y que convierta. Sin compromiso
         </p>
 
         <div
@@ -100,10 +100,6 @@ export function CTASection() {
 
           <CalendlyEmbed />
         </div>
-
-        <p className="reveal text-[13px] font-medium" style={{ color: 'rgba(21,36,60,0.45)' }}>
-          Solo para agentes y firmas con operación establecida y $1,000+/mes de inversión publicitaria
-        </p>
       </Container>
     </section>
   )
