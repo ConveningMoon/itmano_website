@@ -26,12 +26,40 @@ export function Footer() {
             <div className="flex gap-5 justify-end max-[900px]:justify-center">
               <a href="/privacidad" className="text-[12px] text-white/[0.32] no-underline font-medium hover:text-white/70 transition-colors">Privacidad</a>
               <a href="/terminos" className="text-[12px] text-white/[0.32] no-underline font-medium hover:text-white/70 transition-colors">Términos</a>
-              <a href="/recursos" className="text-[12px] text-white/[0.32] no-underline font-medium hover:text-white/70 transition-colors">Recursos</a>
-              <a href="/newsletter" className="text-[12px] text-white/[0.32] no-underline font-medium hover:text-white/70 transition-colors">Newsletter</a>
+              {/* <a href="/recursos" className="text-[12px] text-white/[0.32] no-underline font-medium hover:text-white/70 transition-colors">Recursos</a>
+              <a href="/newsletter" className="text-[12px] text-white/[0.32] no-underline font-medium hover:text-white/70 transition-colors">Newsletter</a> */}
             </div>
             <div className="flex gap-3 justify-end mt-2 max-[900px]:justify-center">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-[11px] text-white/[0.28] no-underline font-semibold tracking-[0.06em] uppercase hover:text-white/65 transition-colors">LinkedIn</a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-[11px] text-white/[0.28] no-underline font-semibold tracking-[0.06em] uppercase hover:text-white/65 transition-colors">Instagram</a>
+              <a
+                href="https://www.linkedin.com/in/jamesdylanvergaracofre/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-1 text-[11px] text-white/[0.28] no-underline font-semibold tracking-[0.06em] uppercase hover:text-white/65 transition-colors"
+              >
+                <Image
+                  src="/assets/icons/linkedin_black_logo_icon_147114.ico"
+                  alt="LinkedIn"
+                  width={12}
+                  height={12}
+                  className="h-3 w-3 opacity-[0.28] brightness-0 invert group-hover:opacity-65 transition-opacity"
+                />
+                LinkedIn
+              </a>
+              <a
+                href="https://www.instagram.com/itmano_realestate/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-1 text-[11px] text-white/[0.28] no-underline font-semibold tracking-[0.06em] uppercase hover:text-white/65 transition-colors"
+              >
+                <Image
+                  src="/assets/icons/instagram_black_logo_icon_147122.ico"
+                  alt="Instagram"
+                  width={12}
+                  height={12}
+                  className="h-3 w-3 opacity-[0.28] brightness-0 invert group-hover:opacity-65 transition-opacity"
+                />
+                Instagram
+              </a>
             </div>
           </div>
         </div>

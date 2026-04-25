@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 
 const VIDEO_URL = process.env.NEXT_PUBLIC_VIDEO_URL ?? ''
-const THUMBNAIL_SRC = '/assets/vsl_thumbnail.png'
+const THUMBNAIL_SRC = '/assets/vsl_thumbnail_V1.png'
 
 function getYouTubeEmbedUrl(url: string): string {
   if (!url) return ''

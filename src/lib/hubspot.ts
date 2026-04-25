@@ -7,10 +7,15 @@ export const HUBSPOT_FORMS = {
   newsletter: HUBSPOT_FORM_GUID_NL,
 }
 
-export async function submitToHubSpot(
+export type HubSpotSubmitResult = {
+  ok: boolean
+  error?: string
+}
+
+export async function submitToHubSpotDetailed(
   formGuid: string,
   fields: Record<string, string>,
-): Promise<boolean> {
+): Promise<HubSpotSubmitResult> {
   try {
     const response = await fetch(
       `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${formGuid}`,
@@ -22,8 +27,33 @@ export async function submitToHubSpot(
         }),
       },
     )
-    return response.ok
+
+    if (response.ok) {
+      return { ok: true }
+    }
+
+    let errorMessage = `Error ${response.status}: no se pudo enviar el formulario.`
+    try {
+      const payload = await response.json()
+      if (typeof payload?.errors?.[0]?.message === 'string') {
+        errorMessage = payload.errors[0].message
+      } else if (typeof payload?.message === 'string') {
+        errorMessage = payload.message
+      }
+    } catch {
+      // Keep default message when response is not JSON.
+    }
+
+    return { ok: false, error: errorMessage }
   } catch {
-    return false
+    return { ok: false, error: 'Error de red: no se pudo conectar con HubSpot.' }
   }
+}
+
+export async function submitToHubSpot(
+  formGuid: string,
+  fields: Record<string, string>,
+): Promise<boolean> {
+  const result = await submitToHubSpotDetailed(formGuid, fields)
+  return result.ok
 }

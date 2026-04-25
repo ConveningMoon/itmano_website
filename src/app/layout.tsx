@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { Analytics } from "@vercel/analytics/next"
 import './globals.css'
 
 const montserrat = Montserrat({
@@ -24,6 +25,8 @@ export const metadata: Metadata = {
     'leads cualificados real estate',
     'sistema captación inmobiliaria',
     'marketing inmobiliario',
+	'marketing bienes raices',
+	'ventas real estate',
     'CRM agentes inmobiliarios',
   ],
   authors: [{ name: 'James Dylan', url: 'https://www.itmano.com' }],

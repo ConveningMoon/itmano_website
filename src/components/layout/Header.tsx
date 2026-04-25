@@ -12,11 +12,11 @@ export function Header() {
           {/* Logo */}
           <a href="/" aria-label="ITMANO — Inicio">
             <Image
-              src="/assets/logo-wordmark.png"
+              src="/assets/Logo_Light.png"
               alt="ITMANO"
               width={120}
               height={28}
-              className="h-7 w-auto brightness-0 invert opacity-90"
+              className="h-6 w-auto"
               priority
             />
           </a>

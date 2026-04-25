@@ -2,45 +2,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '@/components/ui/Container'
 import Image from 'next/image'
-import { submitToHubSpot, HUBSPOT_FORMS } from '@/lib/hubspot'
-
-function ImagePlaceholder() {
-  return (
-    <div className="flex items-center justify-center py-8 px-6">
-      <div
-        className="w-full max-w-[320px] aspect-[3/4] rounded-2xl flex flex-col items-center justify-center gap-5"
-        style={{
-          background: 'rgba(255,255,255,0.04)',
-          border: '1.5px dashed rgba(255,255,255,0.18)',
-          boxShadow: '0 24px 60px rgba(141,78,202,0.18)',
-        }}
-      >
-        <div
-          className="w-[72px] h-[72px] rounded-2xl flex items-center justify-center"
-          style={{ background: 'rgba(141,78,202,0.15)' }}
-        >
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-            <rect x="3" y="5" width="30" height="26" rx="3" stroke="rgba(141,78,202,0.85)" strokeWidth="1.8"/>
-            <circle cx="12" cy="15" r="3.5" stroke="rgba(141,78,202,0.85)" strokeWidth="1.8"/>
-            <path d="M3 27l9-9 6 6 5-5 10 7" stroke="rgba(94,175,223,0.85)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
-        <div className="text-center px-6">
-          <div className="text-[14px] font-bold" style={{ color: 'rgba(255,255,255,0.38)' }}>
-            Mockup del producto
-          </div>
-          <div className="text-[11px] mt-1 leading-[1.6]" style={{ color: 'rgba(255,255,255,0.20)' }}>
-            Imagen pendiente de insertar
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
+import { submitToHubSpotDetailed, HUBSPOT_FORMS } from '@/lib/hubspot'
 
 export function LeadMagnetSection() {
   const ref = useRef<HTMLElement>(null)
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     async function init() {
@@ -64,14 +31,21 @@ export function LeadMagnetSection() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setStatus('loading')
+    setErrorMessage('')
     const form = e.currentTarget
     const data = new FormData(form)
-    const ok = await submitToHubSpot(HUBSPOT_FORMS.leadMagnet, {
-      firstname: data.get('firstname') as string,
+    const result = await submitToHubSpotDetailed(HUBSPOT_FORMS.leadMagnet, {
+	  firstname: data.get('firstname') as string,
       email: data.get('email') as string,
-      jobtitle: data.get('jobtitle') as string,
+      ads_budget: data.get('ads_budget') as string,
     })
-    setStatus(ok ? 'success' : 'error')
+    if (result.ok) {
+      setStatus('success')
+      return
+    }
+
+    setErrorMessage(result.error ?? 'Error al enviar. Intentalo de nuevo.')
+    setStatus('error')
   }
 
   return (
@@ -123,12 +97,12 @@ export function LeadMagnetSection() {
             ) : (
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label htmlFor="lm-name" className="sr-only">Tu nombre</label>
+                  <label htmlFor="lm-firstname" className="sr-only">Tu nombre completo</label>
                   <input
-                    id="lm-name"
+                    id="lm-firstname"
                     name="firstname"
                     type="text"
-                    placeholder="Tu nombre"
+                    placeholder="Tu nombre completo"
                     required
                     className="w-full px-4 py-[14px] rounded-lg font-medium text-[14px] text-white outline-none transition-[border-color,box-shadow] focus:shadow-[0_0_0_3px_rgba(141,78,202,0.20)] placeholder:text-white/30"
                     style={{
@@ -157,12 +131,13 @@ export function LeadMagnetSection() {
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="lm-role" className="sr-only">¿A qué te dedicas en real estate?</label>
+                  <label htmlFor="lm-ads_budget" className="sr-only">¿Cuánto podrías invertir en ADS al mes? ($)</label>
                   <input
-                    id="lm-role"
-                    name="jobtitle"
+                    id="lm-ads_budget"
+                    name="ads_budget"
                     type="text"
-                    placeholder="¿A qué te dedicas en real estate?"
+                    placeholder="¿Cuánto podrías invertir en ADS al mes? ($)"
+					required
                     className="w-full px-4 py-[14px] rounded-lg font-medium text-[14px] text-white outline-none transition-[border-color,box-shadow] focus:shadow-[0_0_0_3px_rgba(141,78,202,0.20)] placeholder:text-white/30"
                     style={{
                       background: 'rgba(255,255,255,0.06)',
@@ -181,7 +156,7 @@ export function LeadMagnetSection() {
                   {status === 'loading' ? 'Enviando...' : 'Descargar gratis'}
                 </button>
                 {status === 'error' && (
-                  <p className="text-[12px] text-red-400 text-center mt-2">Error al enviar. Inténtalo de nuevo.</p>
+                  <p className="text-[12px] text-red-400 text-center mt-2">{errorMessage}</p>
                 )}
                 <p
                   className="text-[11px] text-center mt-[10px] leading-[1.5]"
