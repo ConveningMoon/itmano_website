@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan de Acción · Ricardo Sierra · ITMANO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0c0b09;
+    --bg-card:   rgba(255,255,255,0.028);
+    --bg-card2:  rgba(255,255,255,0.018);
+    --accent:    #c9a87c;
+    --accent-dim:#a88a5e;
+    --accent-glow: rgba(201,168,124,0.10);
+    --border:    rgba(201,168,124,0.12);
+    --border-h:  rgba(201,168,124,0.28);
+    --text:      #eae5dc;
+    --text-sub:  #8c8278;
+    --text-dim:  #5c5650;
+    --red:       #e05c4a;
+    --amber:     #d4934a;
+    --green:     #5a9e72;
+    --serif:     'Cormorant Garamond', Georgia, serif;
+    --sans:      'Figtree', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ─────────────────────────────────── */
+  #nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(12,11,9,0.88);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+    transform: translateY(-100%);
+    transition: transform .35s ease;
+  }
+  #nav.visible { transform: translateY(0); }
+  .nav-brand {
+    font-family: var(--serif);
+    font-size: .9rem;
+    letter-spacing: .12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    color: var(--text-sub);
+    text-decoration: none;
+    font-size: .78rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── SECTIONS ────────────────────────────── */
+  section { padding: 7rem 0; position: relative; overflow: hidden; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 2.5rem; }
+
+  /* ── FADE IN ─────────────────────────────── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .08s; }
+  .reveal-delay-2 { transition-delay: .16s; }
+  .reveal-delay-3 { transition-delay: .24s; }
+  .reveal-delay-4 { transition-delay: .32s; }
+  .reveal-delay-5 { transition-delay: .40s; }
+  .reveal-delay-6 { transition-delay: .48s; }
+
+  /* ── EYEBROW ─────────────────────────────── */
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: .72rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1.1rem;
+    display: flex; align-items: center; gap: .75rem;
+  }
+  .eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px; height: 1px;
+    background: var(--accent);
+    opacity: .6;
+  }
+
+  /* ── SECTION GHOST NUM ───────────────────── */
+  .section-num {
+    position: absolute;
+    font-family: var(--serif);
+    font-size: 14rem;
+    font-weight: 700;
+    color: rgba(201,168,124,0.025);
+    top: -2rem; right: -1rem;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ── HERO ────────────────────────────────── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 6rem 0;
+    position: relative;
+  }
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,124,0.06) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: .72rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6vw, 5.2rem);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -.01em;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-sub);
+    max-width: 580px;
+    margin-bottom: 3.5rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    max-width: 680px;
+  }
+  .hero-stat {
+    padding: 1.4rem 1.6rem;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat-num {
+    font-family: var(--serif);
+    font-size: 1.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: .35rem;
+  }
+  .hero-stat-label {
+    font-size: .72rem;
+    color: var(--text-sub);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    line-height: 1.4;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  }
+  .scroll-hint-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+  .scroll-hint-text {
+    font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-dim);
+  }
+  @keyframes scrollPulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+
+  /* ── MARKET BAR ──────────────────────────── */
+  .market-bar {
+    background: rgba(201,168,124,0.06);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.1rem 0;
+  }
+  .market-bar-inner {
+    display: flex; gap: 0; max-width: 1080px; margin: 0 auto; padding: 0 2.5rem;
+    flex-wrap: wrap;
+  }
+  .market-bar-item {
+    padding: .35rem 2rem .35rem 0;
+    font-size: .76rem;
+    color: var(--text-sub);
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .market-bar-item strong { color: var(--accent); font-weight: 600; }
+  .market-dot {
+    width: 4px; height: 4px; border-radius: 50%; background: var(--accent); opacity: .5; flex-shrink: 0;
+  }
+
+  /* ── SECTION TITLES ──────────────────────── */
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
+  .section-desc {
+    font-size: .95rem;
+    color: var(--text-sub);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* ── BLOQUEOS GRID ───────────────────────── */
+  .bloqueos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+  .bloqueo-card {
+    background: var(--bg);
+    padding: 2.2rem;
+    position: relative;
+    transition: background .25s;
+  }
+  .bloqueo-card:hover { background: var(--bg-card); }
+  .bloqueo-header {
+    display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem;
+  }
+  .bloqueo-num {
+    font-family: var(--serif);
+    font-size: .8rem;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+  .badge {
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: .22rem .7rem;
+    border-radius: 2px;
+  }
+  .badge-critico { background: rgba(224,92,74,0.15); color: var(--red); border: 1px solid rgba(224,92,74,0.25); }
+  .badge-importante { background: rgba(212,147,74,0.15); color: var(--amber); border: 1px solid rgba(212,147,74,0.25); }
+  .badge-meta { background: rgba(90,158,114,0.15); color: var(--green); border: 1px solid rgba(90,158,114,0.3); }
+  .bloqueo-title {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: .6rem;
+    line-height: 1.25;
+  }
+  .bloqueo-desc {
+    font-size: .87rem;
+    color: var(--text-sub);
+    line-height: 1.65;
+    margin-bottom: .9rem;
+  }
+  .bloqueo-quote {
+    font-family: var(--serif);
+    font-size: .95rem;
+    font-style: italic;
+    color: var(--accent-dim);
+    border-left: 2px solid var(--accent-dim);
+    padding-left: 1rem;
+    line-height: 1.55;
+    opacity: .85;
+  }
+
+  /* ── OBJETIVOS GRID ──────────────────────── */
+  .objetivos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .objetivo-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    transition: border-color .25s, background .25s;
+  }
+  .objetivo-card:hover { border-color: var(--border-h); background: rgba(255,255,255,0.04); }
+  .objetivo-icon {
+    width: 38px; height: 38px; margin-bottom: 1rem;
+    color: var(--accent); opacity: .75;
+  }
+  .objetivo-badge {
+    font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent); opacity: .7; margin-bottom: .5rem;
+  }
+  .objetivo-title {
+    font-family: var(--serif);
+    font-size: 1.1rem; font-weight: 500; color: var(--text); margin-bottom: .45rem; line-height: 1.25;
+  }
+  .objetivo-desc { font-size: .82rem; color: var(--text-sub); line-height: 1.6; }
+
+  /* ── ACCION CARDS ────────────────────────── */
+  .accion-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 2.8rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color .25s;
+  }
+  .accion-card:hover { border-color: var(--border-h); }
+  .accion-ghost {
+    position: absolute;
+    font-family: var(--serif);
+    font-size: 9rem; font-weight: 700;
+    color: rgba(201,168,124,0.04);
+    bottom: -1.5rem; right: 1.5rem;
+    line-height: 1; pointer-events: none; user-select: none;
+  }
+  .accion-header { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .accion-badge-wrap { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; flex: 1; }
+  .accion-num {
+    font-size: .7rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--text-dim); padding-top: .1rem;
+  }
+  .badge-accion {
+    font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    padding: .22rem .75rem; border: 1px solid var(--border); color: var(--text-sub);
+    border-radius: 2px;
+  }
+  .accion-title {
+    font-family: var(--serif);
+    font-size: 1.75rem; font-weight: 400; color: var(--text); line-height: 1.2;
+    margin-bottom: .7rem;
+  }
+  .accion-title em { font-style: italic; color: var(--accent); }
+  .pills { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
+  .pill {
+    font-size: .67rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase;
+    padding: .18rem .65rem; border-radius: 20px;
+    background: rgba(201,168,124,0.1); color: var(--accent); border: 1px solid rgba(201,168,124,0.2);
+  }
+  .data-strip {
+    background: rgba(201,168,124,0.05);
+    border: 1px solid rgba(201,168,124,0.12);
+    border-left: 3px solid var(--accent);
+    padding: .9rem 1.2rem;
+    margin-bottom: 1.4rem;
+    font-size: .82rem;
+    color: var(--text-sub);
+    line-height: 1.55;
+  }
+  .data-strip strong { color: var(--accent); }
+  .accion-body {
+    font-size: .92rem; color: var(--text-sub); line-height: 1.7; margin-bottom: 1.6rem;
+  }
+  .accion-body strong { color: var(--text); font-weight: 500; }
+
+  /* ── FLOW ────────────────────────────────── */
+  .flow {
+    display: flex; align-items: stretch; flex-wrap: wrap; gap: 0;
+    margin-bottom: 1.8rem;
+  }
+  .flow-step {
+    flex: 1; min-width: 110px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--border);
+    padding: .9rem 1rem;
+    font-size: .76rem;
+    color: var(--text-sub);
+    text-align: center;
+    position: relative;
+    line-height: 1.4;
+  }
+  .flow-step::after {
+    content: '→';
+    position: absolute;
+    right: -10px; top: 50%; transform: translateY(-50%);
+    color: var(--accent); font-size: .85rem; z-index: 1;
+    background: var(--bg); padding: 0 2px;
+  }
+  .flow-step:last-child::after { display: none; }
+  .flow-step-num {
+    display: block;
+    font-size: .65rem; font-weight: 700; color: var(--accent); letter-spacing: .1em;
+    text-transform: uppercase; margin-bottom: .3rem;
+  }
+  .flow-step-badge {
+    display: inline-block; margin-top: .4rem;
+    font-size: .6rem; font-weight: 700; padding: .15rem .5rem;
+    background: rgba(90,158,114,0.15); color: var(--green); border: 1px solid rgba(90,158,114,0.3);
+    border-radius: 2px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .flow-step-badge-meta {
+    display: inline-block; margin-top: .4rem;
+    font-size: .6rem; font-weight: 700; padding: .15rem .5rem;
+    background: rgba(212,147,74,0.15); color: var(--amber); border: 1px solid rgba(212,147,74,0.3);
+    border-radius: 2px; letter-spacing: .06em; text-transform: uppercase;
+  }
+
+  /* ── IMPL GRID ───────────────────────────── */
+  .impl-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: .6rem;
+  }
+  .impl-item {
+    display: flex; align-items: flex-start; gap: .6rem;
+    padding: .65rem .9rem;
+    background: var(--bg-card2);
+    border: 1px solid rgba(255,255,255,0.04);
+    font-size: .82rem; color: var(--text-sub); line-height: 1.4;
+  }
+  .impl-dot {
+    width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
+    flex-shrink: 0; margin-top: .45rem;
+  }
+
+  /* ── CRONOGRAMA ──────────────────────────── */
+  .timeline {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--border); margin-top: 2.5rem;
+  }
+  .timeline-phase {
+    background: var(--bg);
+    padding: 2.2rem;
+    position: relative;
+  }
+  .timeline-phase-header {
+    font-size: .68rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+    margin-bottom: .8rem;
+  }
+  .timeline-phase-period {
+    font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: var(--text);
+    margin-bottom: .3rem;
+  }
+  .timeline-phase-label {
+    font-size: .78rem; color: var(--text-sub); margin-bottom: 1.5rem;
+  }
+  .timeline-items { display: flex; flex-direction: column; gap: .5rem; }
+  .timeline-item {
+    font-size: .8rem; color: var(--text-sub); display: flex; align-items: flex-start; gap: .6rem;
+    line-height: 1.4;
+  }
+  .timeline-item::before {
+    content: '—'; color: var(--accent); flex-shrink: 0; font-size: .7rem; margin-top: .05rem;
+  }
+  .phase-construccion .timeline-phase-header { color: var(--accent-dim); }
+  .phase-launch .timeline-phase-header { color: var(--amber); }
+  .phase-launch { background: rgba(212,147,74,0.03); }
+  .phase-operacion .timeline-phase-header { color: var(--green); }
+  .phase-operacion { background: rgba(90,158,114,0.03); }
+  .meta-badge-big {
+    display: inline-block; margin: .8rem 0 .4rem;
+    font-size: .68rem; font-weight: 700; padding: .3rem .9rem;
+    background: rgba(212,147,74,0.12); color: var(--amber); border: 1px solid rgba(212,147,74,0.35);
+    border-radius: 2px; letter-spacing: .08em; text-transform: uppercase;
+  }
+
+  /* ── TRABAJO MENSUAL ─────────────────────── */
+  .trabajo-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+  }
+  .trabajo-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    padding: 1.8rem; transition: border-color .25s;
+  }
+  .trabajo-card:hover { border-color: var(--border-h); }
+  .trabajo-card.featured {
+    border-color: rgba(201,168,124,0.25);
+    background: rgba(201,168,124,0.05);
+  }
+  .trabajo-card-num {
+    font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: .6rem;
+  }
+  .trabajo-card-title {
+    font-family: var(--serif); font-size: 1.15rem; font-weight: 500; color: var(--text);
+    margin-bottom: .5rem; line-height: 1.25;
+  }
+  .trabajo-card-desc { font-size: .83rem; color: var(--text-sub); line-height: 1.6; }
+  .trabajo-resumen {
+    margin-top: 2rem; padding: 1.5rem 2rem;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .trabajo-resumen-num {
+    font-family: var(--serif); font-size: 2.2rem; font-weight: 600; color: var(--accent);
+  }
+  .trabajo-resumen-label { font-size: .8rem; color: var(--text-sub); margin-top: .2rem; }
+  .trabajo-resumen-text { font-size: .88rem; color: var(--text-sub); max-width: 480px; line-height: 1.6; }
+
+  /* ── INVERSIÓN ───────────────────────────── */
+  .roi-block {
+    background: rgba(201,168,124,0.05); border: 1px solid rgba(201,168,124,0.15);
+    padding: 2.2rem; margin-bottom: 2.5rem;
+  }
+  .roi-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--text); margin-bottom: .6rem; }
+  .roi-desc { font-size: .87rem; color: var(--text-sub); line-height: 1.65; margin-bottom: 1.5rem; }
+  .roi-equation {
+    display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+    font-family: var(--serif); font-size: 1.05rem; color: var(--text-sub);
+  }
+  .roi-eq-item {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    padding: .7rem 1.1rem; line-height: 1.3;
+    font-size: .88rem;
+  }
+  .roi-eq-item strong { display: block; font-size: 1.15rem; color: var(--text); font-family: var(--serif); }
+  .roi-eq-op { color: var(--accent); font-weight: 600; font-size: 1.2rem; }
+  .roi-eq-result { background: rgba(90,158,114,0.1); border: 1px solid rgba(90,158,114,0.25); }
+  .roi-eq-result strong { color: var(--green); }
+
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 2rem;
+  }
+  .pricing-card {
+    border: 1px solid var(--border); padding: 2.2rem;
+    position: relative;
+  }
+  .pricing-card.primary {
+    border-color: rgba(201,168,124,0.3); background: rgba(201,168,124,0.04);
+  }
+  .pricing-phase {
+    font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: .5rem;
+  }
+  .pricing-name { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--text); margin-bottom: 1.2rem; }
+  .pricing-amount {
+    display: flex; align-items: baseline; gap: .4rem; margin-bottom: .3rem;
+  }
+  .pricing-num {
+    font-family: var(--serif); font-size: 3.2rem; font-weight: 600; color: var(--text); line-height: 1;
+  }
+  .pricing-currency { font-size: 1.3rem; color: var(--accent); font-weight: 500; }
+  .pricing-period { font-size: .8rem; color: var(--text-sub); }
+  .pricing-variable {
+    font-size: .8rem; color: var(--accent); margin: .8rem 0 1.4rem;
+    padding: .5rem .8rem; border: 1px solid rgba(201,168,124,0.15);
+    background: rgba(201,168,124,0.06);
+  }
+  .pricing-includes { display: flex; flex-direction: column; gap: .5rem; }
+  .pricing-include-item {
+    display: flex; align-items: flex-start; gap: .65rem; font-size: .82rem; color: var(--text-sub);
+    line-height: 1.4;
+  }
+  .check { color: var(--accent); flex-shrink: 0; font-size: .85rem; margin-top: .05rem; }
+
+  .commission-table {
+    width: 100%; border-collapse: collapse; margin-top: 1.5rem;
+  }
+  .commission-table th {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    padding: .8rem 1rem; text-align: left;
+    font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--text-sub);
+  }
+  .commission-table td {
+    border: 1px solid var(--border); padding: .8rem 1rem;
+    font-size: .82rem; color: var(--text-sub); line-height: 1.4;
+  }
+  .commission-table tr:hover td { background: rgba(255,255,255,0.015); }
+  .commission-table .accent { color: var(--accent); font-weight: 600; }
+  .commission-table .green { color: var(--green); font-weight: 600; }
+  .commission-note {
+    font-size: .78rem; color: var(--text-dim); margin-top: 1rem; line-height: 1.55; padding-left: .5rem;
+    border-left: 2px solid var(--border);
+  }
+
+  /* ── FOOTER ──────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 0;
+    text-align: center;
+  }
+  .footer-brand {
+    font-family: var(--serif); font-size: 1.05rem; color: var(--accent); letter-spacing: .15em;
+    text-transform: uppercase; font-weight: 500; margin-bottom: .5rem;
+  }
+  .footer-text { font-size: .78rem; color: var(--text-dim); }
+
+  /* ── RESPONSIVE ──────────────────────────── */
+  @media (max-width: 768px) {
+    .hero-stats { grid-template-columns: repeat(2,1fr); }
+    .bloqueos-grid { grid-template-columns: 1fr; }
+    .objetivos-grid { grid-template-columns: repeat(2,1fr); }
+    .timeline { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .trabajo-grid { grid-template-columns: 1fr; }
+    .impl-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 480px) {
+    .objetivos-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-brand">ITMANO</div>
+  <div class="nav-links">
+    <a href="#situacion">Situación</a>
+    <a href="#objetivos">Objetivos</a>
+    <a href="#plan">Plan</a>
+    <a href="#cronograma">Cronograma</a>
+    <a href="#trabajo">Trabajo mensual</a>
+    <a href="#inversion">Inversión</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-eyebrow reveal">ITMANO · Plan estratégico · Mayo 2026</div>
+    <h1 class="hero-title reveal reveal-delay-1">
+      El sistema de captación<br>para <em>Ricardo Sierra</em>
+    </h1>
+    <p class="hero-sub reveal reveal-delay-2">
+      De la visibilidad pasiva al pipeline activo — construido sobre el comprador ultra luxury internacional de Costa del Sol que ya está llegando a IARS y se va sin dejar rastro.
+    </p>
+    <div class="hero-stats reveal reveal-delay-3">
+      <div class="hero-stat">
+        <div class="hero-stat-num">4</div>
+        <div class="hero-stat-label">Acciones de crecimiento</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">90d</div>
+        <div class="hero-stat-label">Construcción + lanzamiento</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">€4.509</div>
+        <div class="hero-stat-label">Precio/m² real Marbella Q3 2025</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">63%</div>
+        <div class="hero-stat-label">Compradores extranjeros en Marbella</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-hint-line"></div>
+    <div class="scroll-hint-text">Scroll</div>
+  </div>
+</section>
+
+<!-- MARKET BAR -->
+<div class="market-bar">
+  <div class="market-bar-inner">
+    <div class="market-bar-item"><span class="market-dot"></span> Marbella <strong>+12,6%</strong> precio real interanual Q3 2025</div>
+    <div class="market-bar-item"><span class="market-dot"></span> <strong>4.745</strong> operaciones Marbella 2024 (+31% vs pre-pandemia)</div>
+    <div class="market-bar-item"><span class="market-dot"></span> Precio mediano de venta <strong>€711.138</strong> (3,4× media nacional)</div>
+    <div class="market-bar-item"><span class="market-dot"></span> Top compradores: <strong>UK · Suecia · Holanda · Alemania · Polonia</strong></div>
+    <div class="market-bar-item"><span class="market-dot"></span> Comparable a <strong>Saint-Tropez, Miami y Dubái</strong> (Panorama Properties 2025)</div>
+  </div>
+</div>
+
+<!-- 01 SITUACIÓN ACTUAL -->
+<section id="situacion">
+  <div class="section-num">01</div>
+  <div class="container">
+    <div class="eyebrow reveal">01 — Situación actual</div>
+    <h2 class="section-title reveal reveal-delay-1">
+      Visibilidad sin conversión.<br>Leads que llegan y <em>desaparecen.</em>
+    </h2>
+    <p class="section-desc reveal reveal-delay-2">
+      Todo lo que sigue viene de la conversación real. No son suposiciones — son los bloqueos exactos que Ricardo describió y que el sistema viene a resolver.
+    </p>
+
+    <div class="bloqueos-grid reveal reveal-delay-3">
+
+      <div class="bloqueo-card">
+        <div class="bloqueo-header">
+          <span class="bloqueo-num">B1</span>
+          <span class="badge badge-critico">Crítico</span>
+        </div>
+        <div class="bloqueo-title">Sin sistema de captura activo</div>
+        <p class="bloqueo-desc">El único CTA en iarsrealestate.com es un enlace a WhatsApp. Un visitante que llega desde Rightmove o Instagram tiene dos opciones: escribir o irse para siempre. No hay mecanismo que capture email, cualifique la intención o segmente por perfil. El comprador no residente en fase de evaluación —que es la mayoría— desaparece sin dejar rastro.</p>
+        <div class="bloqueo-quote">"lo primero que hago es preguntarle sus datos personales… luego qué tipo de distribución, qué rango de inversión"</div>
+      </div>
+
+      <div class="bloqueo-card">
+        <div class="bloqueo-header">
+          <span class="bloqueo-num">B2</span>
+          <span class="badge badge-critico">Crítico</span>
+        </div>
+        <div class="bloqueo-title">Todos los leads entran sin filtro previo</div>
+        <p class="bloqueo-desc">La cualificación se hace manualmente después del primer contacto. Eso significa invertir el mismo tiempo con un comprador con €8M de liquidez que con alguien que pregunta precio por curiosidad. Sin filtro previo, todos los leads tienen el mismo valor y el mismo coste de tiempo — y eso no escala.</p>
+        <div class="bloqueo-quote">"¿Qué tipo de distribución? ¿Qué rango de inversión? ¿Qué zona?"</div>
+      </div>
+
+      <div class="bloqueo-card">
+        <div class="bloqueo-header">
+          <span class="bloqueo-num">B3</span>
+          <span class="badge badge-critico">Crítico</span>
+        </div>
+        <div class="bloqueo-title">Nurturing inexistente para el ciclo de 9-24 meses</div>
+        <p class="bloqueo-desc">El comprador ultra luxury internacional no decide en semanas. Evalúa durante meses o años. Sin un sistema de seguimiento estructurado, el lead que hoy consultó una villa de €10M y no estaba listo lo cierra 14 meses después otro agente que sí estuvo presente durante ese tiempo.</p>
+        <div class="bloqueo-quote">"Seguiríamos en contacto, mi función no es presionar sino atenderlo"</div>
+      </div>
+
+      <div class="bloqueo-card">
+        <div class="bloqueo-header">
+          <span class="bloqueo-num">B4</span>
+          <span class="badge badge-importante">Importante</span>
+        </div>
+        <div class="bloqueo-title">Posicionamiento digital sin diferenciación real</div>
+        <p class="bloqueo-desc">iarsrealestate.com está en inglés y bien orientada al comprador internacional — eso es un acierto. Pero es una galería estática sin narrativa de autoridad, sin datos de mercado y sin razón para que un inversor sueco con €5M prefiera contactar a IARS frente a los cientos de agentes establecidos en la zona.</p>
+        <div class="bloqueo-quote">"Tienes sugerencias para conseguir esos clientes extranjeros para nuestro sector"</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 02 OBJETIVOS -->
+<section id="objetivos" style="background: rgba(255,255,255,0.012);">
+  <div class="section-num">02</div>
+  <div class="container">
+    <div class="eyebrow reveal">02 — Objetivos del sistema</div>
+    <h2 class="section-title reveal reveal-delay-1">Lo que el sistema<br>construye <em>para IARS.</em></h2>
+    <p class="section-desc reveal reveal-delay-2">
+      No es un reemplazo de lo que ya tiene — EXP Realty, los portales, los acuerdos con promotores. Es la capa estratégica que conecta todo eso con el comprador internacional correcto.
+    </p>
+
+    <div class="objetivos-grid">
+
+      <div class="objetivo-card reveal reveal-delay-1">
+        <svg class="objetivo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>
+        </svg>
+        <div class="objetivo-badge">Mes 1-2</div>
+        <div class="objetivo-title">Pipeline activo y clasificado</div>
+        <p class="objetivo-desc">Leads organizados en A / B / C con temperatura visible. Ricardo sabe en 30 segundos qué está caliente y qué toca hacer hoy.</p>
+      </div>
+
+      <div class="objetivo-card reveal reveal-delay-2">
+        <svg class="objetivo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+        </svg>
+        <div class="objetivo-badge">Mes 1-2</div>
+        <div class="objetivo-title">Leads capturados automáticamente</div>
+        <p class="objetivo-desc">El comprador internacional que llega a la web deja sus datos y su intención antes del primer contacto humano — sin que Ricardo tenga que preguntarle nada.</p>
+      </div>
+
+      <div class="objetivo-card reveal reveal-delay-3">
+        <svg class="objetivo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+        </svg>
+        <div class="objetivo-badge">Mes 2-3</div>
+        <div class="objetivo-title">Comprador ultra luxury atraído por perfil</div>
+        <p class="objetivo-desc">El inversor británico, sueco o neerlandés llega por un recurso diseñado específicamente para su perfil — no por un catálogo genérico de propiedades.</p>
+      </div>
+
+      <div class="objetivo-card reveal reveal-delay-4">
+        <svg class="objetivo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/>
+        </svg>
+        <div class="objetivo-badge">Mes 3</div>
+        <div class="objetivo-title">Nurturing automatizado para el ciclo largo</div>
+        <p class="objetivo-desc">El lead que dijo «compraré en 2027» recibe presencia mensual de valor real — sin que Ricardo tenga que recordar escribirle manualmente cada trimestre.</p>
+      </div>
+
+      <div class="objetivo-card reveal reveal-delay-5">
+        <svg class="objetivo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0H3"/>
+        </svg>
+        <div class="objetivo-badge">Mes 3</div>
+        <div class="objetivo-title">CRM con inteligencia de pipeline</div>
+        <p class="objetivo-desc">Dashboard personalizado para IARS — complementario al Inmovilla de EXP, orientado a la fase de captación y seguimiento anterior a la transacción.</p>
+      </div>
+
+      <div class="objetivo-card reveal reveal-delay-6">
+        <svg class="objetivo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5"/>
+        </svg>
+        <div class="objetivo-badge">Mes 3</div>
+        <div class="objetivo-title">Meta Ads lanzado y optimizado</div>
+        <p class="objetivo-desc">Captación pagada activa con audiencias de inversor internacional ultra luxury. El sistema ya está construido para recibirlos — los ads traen tráfico de intención real.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 03 PLAN DE ACCIÓN -->
+<section id="plan">
+  <div class="section-num">03</div>
+  <div class="container">
+    <div class="eyebrow reveal">03 — Plan de acción</div>
+    <h2 class="section-title reveal reveal-delay-1">Cuatro acciones.<br><em>Una infraestructura</em> permanente.</h2>
+    <p class="section-desc reveal reveal-delay-2">
+      Cada acción resuelve uno o más bloqueos identificados. El sistema que resulta es de propiedad de IARS — no se alquila mes a mes.
+    </p>
+
+    <!-- ACCIÓN 1 -->
+    <div class="accion-card reveal">
+      <div class="accion-ghost">01</div>
+      <div class="accion-header">
+        <div class="accion-badge-wrap">
+          <span class="accion-num">Acción 01</span>
+          <span class="badge badge-accion">Posicionamiento</span>
+        </div>
+      </div>
+      <h3 class="accion-title">De catálogo de propiedades<br>a <em>inteligencia de mercado.</em></h3>
+      <div class="pills">
+        <span class="pill">Resuelve B4</span>
+      </div>
+      <div class="data-strip">
+        <strong>Realidad del mercado:</strong> Más de 300 agentes EXP activos en Costa del Sol. Todos con acceso a los mismos portales, los mismos listados, las mismas propiedades. El comprador de €5M no busca al agente con más catálogo — busca al que entiende su mercado mejor que nadie. En Marbella, el precio real alcanzó <strong>€4.509/m²</strong> (+12,6% interanual). Esos datos no los usa ningún agente en su posicionamiento. Eso es el diferenciador.
+      </div>
+      <p class="accion-body">
+        El primer movimiento es reencuadrar cómo se presenta IARS en todos sus canales. <strong>No es un agente con catálogo</strong> — es el especialista que le dice a un inversor sueco exactamente qué pasó con los precios en La Zagaleta en los últimos 12 meses y qué puede esperar para 2027. Esa confianza se construye antes de la primera conversación.
+      </p>
+      <div class="flow">
+        <div class="flow-step"><span class="flow-step-num">01</span>Auditoría de perfil digital</div>
+        <div class="flow-step"><span class="flow-step-num">02</span>Brief de posicionamiento IARS</div>
+        <div class="flow-step"><span class="flow-step-num">03</span>Reescritura de bio LinkedIn / Instagram</div>
+        <div class="flow-step"><span class="flow-step-num">04</span>CTAs web → Landing pages</div>
+        <div class="flow-step"><span class="flow-step-num">05</span>Narrativa de autoridad activa</div>
+      </div>
+      <div class="impl-grid">
+        <div class="impl-item"><span class="impl-dot"></span>Definición del perfil de comprador prioritario (inversor no residente vs lifestyle buyer vs obra nueva)</div>
+        <div class="impl-item"><span class="impl-dot"></span>Reescritura de bio de LinkedIn e Instagram con datos reales del mercado de Marbella</div>
+        <div class="impl-item"><span class="impl-dot"></span>Optimización de CTAs en iarsrealestate.com → redirección a landing pages de captación</div>
+        <div class="impl-item"><span class="impl-dot"></span>Narrativa de autoridad: Ricardo como experto en ultra luxury Marbella, no como agente genérico</div>
+      </div>
+    </div>
+
+    <!-- ACCIÓN 2 -->
+    <div class="accion-card reveal">
+      <div class="accion-ghost">02</div>
+      <div class="accion-header">
+        <div class="accion-badge-wrap">
+          <span class="accion-num">Acción 02</span>
+          <span class="badge badge-accion">Captación</span>
+        </div>
+      </div>
+      <h3 class="accion-title">Dos activos de captura<br>para el comprador <em>ultra luxury internacional.</em></h3>
+      <div class="pills">
+        <span class="pill">Resuelve B1</span>
+        <span class="pill">Resuelve B2</span>
+      </div>
+      <div class="data-strip">
+        <strong>Por qué funciona:</strong> El 71% de los compradores en Marbella son no residentes. Antes de hablar con un agente, investigan. Un inversor con €5M no llena un formulario de contacto — sí descarga un informe con datos reales de mercado que le ayuda a tomar una decisión. El que publica ese informe es el que genera la conversación.
+      </div>
+      <p class="accion-body">
+        Se crean dos recursos de alto valor, uno por perfil de comprador. <strong>El micro-filtro de cualificación está integrado en el proceso de descarga</strong> — el lead deja su intención voluntariamente, a cambio de algo que le aporta valor real. Ricardo recibe el lead ya clasificado antes de abrir WhatsApp.
+      </p>
+      <div class="flow">
+        <div class="flow-step"><span class="flow-step-num">LM1</span>IARS Marbella Intelligence Brief</div>
+        <div class="flow-step"><span class="flow-step-num">LM2</span>New Development Tracker 2025-2027</div>
+        <div class="flow-step"><span class="flow-step-num">03</span>2 landing pages con micro-filtro</div>
+        <div class="flow-step"><span class="flow-step-num">04</span>Clasificación automática A / B / C</div>
+        <div class="flow-step"><span class="flow-step-num">05</span>Activación en todos los canales</div>
+      </div>
+      <div class="impl-grid">
+        <div class="impl-item"><span class="impl-dot"></span><strong>LM1 — IARS Marbella Intelligence Brief:</strong> informe de 8-10 páginas con datos reales (€4.509/m², evolución, fiscalidad no residentes, comparativa Miami/Saint-Tropez). Target: inversor no residente UK, Suecia, Holanda.</div>
+        <div class="impl-item"><span class="impl-dot"></span><strong>LM2 — New Development Tracker 2025-2027:</strong> documento con proyectos de obra nueva — incluyendo los 4 proyectos de Ricardo con promotores. Diferenciador real que nadie puede copiar sin tener esos acuerdos.</div>
+        <div class="impl-item"><span class="impl-dot"></span>Micro-filtro de 4 preguntas integrado: horizonte (0-12m / 12-24m / explorando), rango (€1-3M / €3-5M / €5-8M / €8M+), finalidad (inversión / lifestyle / mixto), liquidez disponible</div>
+        <div class="impl-item"><span class="impl-dot"></span>2 landing pages de captación con entrega automática del documento por email tras completar el filtro</div>
+      </div>
+    </div>
+
+    <!-- ACCIÓN 3 -->
+    <div class="accion-card reveal">
+      <div class="accion-ghost">03</div>
+      <div class="accion-header">
+        <div class="accion-badge-wrap">
+          <span class="accion-num">Acción 03</span>
+          <span class="badge badge-accion">Nurturing</span>
+        </div>
+      </div>
+      <h3 class="accion-title">Nurturing automatizado<br>para el <em>ciclo de 9 a 24 meses.</em></h3>
+      <div class="pills">
+        <span class="pill">Resuelve B3</span>
+      </div>
+      <div class="data-strip">
+        <strong>El comprador de ultra luxury no decide en días:</strong> el no residente europeo que evalúa una villa de €5M+ en Marbella tarda en promedio entre 9 y 24 meses desde el primer contacto hasta el cierre. El agente que cierra no es necesariamente el que tiene la mejor propiedad — es el que mantuvo presencia con valor real durante todo ese proceso.
+      </div>
+      <p class="accion-body">
+        Ricardo tiene ya un lead real que le dijo que <strong>compraría en 2027</strong>. Sin sistema, ese lead se enfría solo — no por mala voluntad, sino porque la presencia manual no escala. Con el sistema, ese lead recibe el «IARS Market Radar» mensual, y Ricardo recibe una alerta cuando el lead se acerca a su horizonte de compra.
+      </p>
+      <div class="flow">
+        <div class="flow-step"><span class="flow-step-num">01</span>Bienvenida automática (3 emails)</div>
+        <div class="flow-step"><span class="flow-step-num">02</span>Newsletter «IARS Market Radar» mensual</div>
+        <div class="flow-step"><span class="flow-step-num">03</span>Scripts WhatsApp por perfil A / B</div>
+        <div class="flow-step"><span class="flow-step-num">04</span>Alertas de reactivación automática</div>
+      </div>
+      <div class="impl-grid">
+        <div class="impl-item"><span class="impl-dot"></span>Secuencia de bienvenida de 3 emails automáticos: quién es Ricardo, qué es IARS, dato de mercado relevante para el perfil del lead</div>
+        <div class="impl-item"><span class="impl-dot"></span>Newsletter mensual «IARS Market Radar»: actualizaciones de precios por zona, nuevas propiedades relevantes, cambios fiscales para no residentes</div>
+        <div class="impl-item"><span class="impl-dot"></span>Scripts de WhatsApp por perfil: mensajes de valor trimestral — no «¿sigues interesado?», sino «acaba de entrar una villa en Benahavís que encaja con lo que me describiste»</div>
+        <div class="impl-item"><span class="impl-dot"></span>Alerta automática: si Lead B lleva 45 días sin abrir emails → notificación a Ricardo para contacto manual de alto valor</div>
+      </div>
+    </div>
+
+    <!-- ACCIÓN 4 -->
+    <div class="accion-card reveal">
+      <div class="accion-ghost">04</div>
+      <div class="accion-header">
+        <div class="accion-badge-wrap">
+          <span class="accion-num">Acción 04</span>
+          <span class="badge badge-accion">CRM + Meta Ads</span>
+          <span class="badge badge-meta">Meta Ads arranca mes 3</span>
+        </div>
+      </div>
+      <h3 class="accion-title">Pipeline inteligente<br>y captación <em>pagada activada.</em></h3>
+      <div class="pills">
+        <span class="pill">Resuelve B1</span>
+        <span class="pill">Resuelve B2</span>
+        <span class="pill">Resuelve B3</span>
+      </div>
+      <div class="data-strip">
+        <strong>Por qué Meta Ads arranca en el mes 3 y no antes:</strong> los ads traen tráfico. Si el sistema de captura, filtro y nurturing no está listo, ese tráfico se pierde igual que el orgánico. Se construye el destino antes de traer los visitantes. En el mes 3, cuando los landing pages y el CRM están operativos, los ads comienzan con audiencias de inversor internacional no residente — exactamente el comprador del catálogo de IARS.
+      </div>
+      <p class="accion-body">
+        <strong>CRM:</strong> dashboard personalizado para IARS — complementario al Inmovilla de EXP. Mientras Inmovilla gestiona transacciones y portales, el CRM de ITMANO gestiona la fase de captación y nurturing: scoring A/B/C, temperatura, próxima acción, alertas.<br><br>
+        <strong>Meta Ads:</strong> en el mes 3, con el sistema construido, se activa captación pagada con audiencias específicas: inversor no residente (UK, Suecia, Holanda) + intereses de wealth management, inversión internacional y lifestyle premium. Budget recomendado: €500-800/mes de inversión publicitaria (aparte del fee ITMANO).
+      </p>
+      <div class="flow">
+        <div class="flow-step"><span class="flow-step-num">01</span>Setup CRM ITMANO para IARS</div>
+        <div class="flow-step"><span class="flow-step-num">02</span>Pipeline A/B/C + alertas activas</div>
+        <div class="flow-step"><span class="flow-step-num">03</span>Creatividades Meta Ads<span class="flow-step-badge-meta">Mes 3</span></div>
+        <div class="flow-step"><span class="flow-step-num">04</span>Lanzamiento Meta Ads<span class="flow-step-badge-meta">Mes 3</span></div>
+        <div class="flow-step"><span class="flow-step-num">05</span>Optimización continua<span class="flow-step-badge">Mes 4+</span></div>
+      </div>
+      <div class="impl-grid">
+        <div class="impl-item"><span class="impl-dot"></span>Dashboard CRM con etapas: Nuevo → Nurturing → Tibio → Caliente → En proceso → Cerrado</div>
+        <div class="impl-item"><span class="impl-dot"></span>Integración automática desde formulario de lead magnets → cada lead entra ya clasificado con sus datos de cualificación</div>
+        <div class="impl-item"><span class="impl-dot"></span>Alerta: lead sin contacto >30 días. Alerta: Lead B que llega a los 9 meses → reactivación programada</div>
+        <div class="impl-item"><span class="impl-dot"></span>Meta Ads mes 3: creatividades específicas para comprador no residente ultra luxury + landing page dedicada + A/B testing desde semana 1</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 04 CRONOGRAMA -->
+<section id="cronograma" style="background: rgba(255,255,255,0.012);">
+  <div class="section-num">04</div>
+  <div class="container">
+    <div class="eyebrow reveal">04 — Cronograma</div>
+    <h2 class="section-title reveal reveal-delay-1">2 meses de construcción,<br>1 de lanzamiento, <em>luego el sistema corre.</em></h2>
+    <p class="section-desc reveal reveal-delay-2">
+      El orden importa. No se activan los ads antes de que el sistema esté listo para recibirlos.
+    </p>
+
+    <div class="timeline reveal reveal-delay-3">
+
+      <div class="timeline-phase phase-construccion">
+        <div class="timeline-phase-header">Fase 1 — Construcción</div>
+        <div class="timeline-phase-period">Meses 1 y 2</div>
+        <div class="timeline-phase-label">El sistema se construye antes de lanzar.</div>
+        <div class="timeline-items">
+          <div class="timeline-item">Brief de posicionamiento IARS + bios actualizadas</div>
+          <div class="timeline-item">LM1 — IARS Marbella Intelligence Brief</div>
+          <div class="timeline-item">LM2 — New Development Tracker 2025-2027</div>
+          <div class="timeline-item">2 landing pages con micro-filtro integrado</div>
+          <div class="timeline-item">Secuencia de bienvenida (3 emails automáticos)</div>
+          <div class="timeline-item">Template newsletter «IARS Market Radar»</div>
+          <div class="timeline-item">CRM ITMANO configurado y personalizado</div>
+          <div class="timeline-item">Scripts de WhatsApp por perfil A / B</div>
+        </div>
+      </div>
+
+      <div class="timeline-phase phase-launch">
+        <div class="timeline-phase-header">Fase 2 — Lanzamiento</div>
+        <div class="timeline-phase-period">Mes 3</div>
+        <div class="timeline-phase-label">El sistema sale al mundo.</div>
+        <div class="meta-badge-big">Meta Ads arranca aquí</div>
+        <div class="timeline-items">
+          <div class="timeline-item">Primer newsletter «IARS Market Radar» enviado</div>
+          <div class="timeline-item">Creatividades Meta Ads finalizadas</div>
+          <div class="timeline-item">Activación campañas de captación internacional</div>
+          <div class="timeline-item">Primeros leads cualificados en el CRM</div>
+          <div class="timeline-item">Primer reporte de resultados</div>
+          <div class="timeline-item">Ajuste de audiencias y landing pages según datos reales</div>
+        </div>
+      </div>
+
+      <div class="timeline-phase phase-operacion">
+        <div class="timeline-phase-header">Fase 3 — Operación continua</div>
+        <div class="timeline-phase-period">Mes 4 en adelante</div>
+        <div class="timeline-phase-label">El sistema trabaja. ITMANO lo optimiza.</div>
+        <div class="timeline-items">
+          <div class="timeline-item">Gestión activa de Meta Ads (pujas, creatividades, audiencias)</div>
+          <div class="timeline-item">Actualización mensual de lead magnets con nuevos datos</div>
+          <div class="timeline-item">Optimización de secuencias de nurturing según apertura y clicks</div>
+          <div class="timeline-item">10 piezas de contenido mensual (Instagram + LinkedIn)</div>
+          <div class="timeline-item">Revisión de pipeline y reactivación de Lead B</div>
+          <div class="timeline-item">Reporte mensual + reunión de estrategia 45 min</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 05 TRABAJO MENSUAL -->
+<section id="trabajo">
+  <div class="section-num">05</div>
+  <div class="container">
+    <div class="eyebrow reveal">05 — Trabajo mensual</div>
+    <h2 class="section-title reveal reveal-delay-1">Lo que ITMANO gestiona<br>cada mes <em>a partir del mes 4.</em></h2>
+    <p class="section-desc reveal reveal-delay-2">
+      El sistema no es set-and-forget. El mercado cambia, las audiencias se saturan, los leads evolucionan. Esta es la gestión continua que mantiene el sistema generando oportunidades cualificadas.
+    </p>
+
+    <div style="background: rgba(201,168,124,0.04); border: 1px solid rgba(201,168,124,0.12); padding: 1.5rem 2rem; margin-bottom: 2rem;" class="reveal reveal-delay-3">
+      <p style="font-size: .88rem; color: var(--text-sub); line-height: 1.7;">
+        Un sistema de captación ultra luxury no se optimiza solo. Lo que ITMANO hace cada mes es lo que diferencia un sistema que empieza fuerte y se deteriora de uno que mejora con el tiempo: nuevas creatividades cuando las actuales se agotan, ajuste de audiencias cuando el CPL sube, actualización de los lead magnets con datos frescos del mercado, y reactivación de los leads templados que ya están cerca de su horizonte de compra.
+      </p>
+    </div>
+
+    <div class="trabajo-grid">
+
+      <div class="trabajo-card featured reveal reveal-delay-1">
+        <div class="trabajo-card-num">Gestión 01 · Destacada</div>
+        <div class="trabajo-card-title">Gestión activa de Meta Ads</div>
+        <p class="trabajo-card-desc">Nuevas creatividades cuando las actuales se agotan (normalmente cada 3-4 semanas en ultra luxury). Optimización de pujas y audiencias según CPL y calidad de lead. A/B testing de copy y visual. Ajuste de segmentación por país de origen cuando los datos lo indican.</p>
+      </div>
+
+      <div class="trabajo-card reveal reveal-delay-2">
+        <div class="trabajo-card-num">Gestión 02</div>
+        <div class="trabajo-card-title">Lead magnets y activos de captación</div>
+        <p class="trabajo-card-desc">Actualización mensual de los datos de mercado en los documentos de captación (precios, evolución, nuevas comparativas internacionales). Nuevas guías estacionales cuando el mercado o la temporada lo justifica.</p>
+      </div>
+
+      <div class="trabajo-card reveal reveal-delay-3">
+        <div class="trabajo-card-num">Gestión 03</div>
+        <div class="trabajo-card-title">Optimización de secuencias de nurturing</div>
+        <p class="trabajo-card-desc">Análisis de tasa de apertura y clicks del newsletter mensual. Ajuste de timing y contenido según comportamiento de los leads. Rediseño de los mensajes que no generan respuesta en 60 días de prueba.</p>
+      </div>
+
+      <div class="trabajo-card reveal reveal-delay-4">
+        <div class="trabajo-card-num">Gestión 04</div>
+        <div class="trabajo-card-title">Contenido de posicionamiento (10 piezas/mes)</div>
+        <p class="trabajo-card-desc">10 piezas mensuales de contenido para Instagram y LinkedIn — distribuidas entre datos de mercado, propiedades destacadas del catálogo y narrativa de autoridad de Ricardo como referente de ultra luxury en Costa del Sol.</p>
+      </div>
+
+      <div class="trabajo-card reveal reveal-delay-5">
+        <div class="trabajo-card-num">Gestión 05</div>
+        <div class="trabajo-card-title">Revisión de pipeline y CRM</div>
+        <p class="trabajo-card-desc">Identificación de leads Lead B listos para reactivar (según horizonte declarado). Limpieza del pipeline de leads que no reaccionaron en 90 días. Atribución correcta de cada operación cerrada para el cálculo del variable.</p>
+      </div>
+
+      <div class="trabajo-card reveal reveal-delay-6">
+        <div class="trabajo-card-num">Gestión 06</div>
+        <div class="trabajo-card-title">Reporte mensual + reunión estratégica</div>
+        <p class="trabajo-card-desc">Dashboard de resultados del mes: leads captados por canal, ratio A/B/C, conversaciones iniciadas, operaciones en pipeline. Reunión de 45 minutos para revisar y ajustar el plan del mes siguiente.</p>
+      </div>
+
+    </div>
+
+    <div class="trabajo-resumen reveal">
+      <div>
+        <div class="trabajo-resumen-num">6</div>
+        <div class="trabajo-resumen-label">Gestiones activas / mes</div>
+      </div>
+      <div class="trabajo-resumen-text">
+        Esto es lo que ITMANO gestiona cada mes desde el mes 4. El fee mensual de fase 2 cubre exactamente esto — más el porcentaje variable que solo se activa cuando el sistema genera un cierre.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 06 INVERSIÓN -->
+<section id="inversion" style="background: rgba(255,255,255,0.012);">
+  <div class="section-num">06</div>
+  <div class="container">
+    <div class="eyebrow reveal">06 — Inversión</div>
+    <h2 class="section-title reveal reveal-delay-1">Una infraestructura permanente.<br><em>Skin in the game</em> real.</h2>
+    <p class="section-desc reveal reveal-delay-2">
+      ITMANO no cobra por servicio — cobra cuando el sistema funciona. El fee fijo cubre la construcción y la gestión. El variable se activa solo cuando hay un cierre atribuible al sistema.
+    </p>
+
+    <div class="roi-block reveal reveal-delay-3">
+      <div class="roi-title">El cálculo — fase de operación (mes 4+)</div>
+      <p class="roi-desc">Con los números reales del catálogo de IARS. Una sola operación extra atribuible al sistema en el año paga todo y sobra.</p>
+      <div class="roi-equation">
+        <div class="roi-eq-item">
+          <strong>1 operación extra</strong>
+          Villa €5M · comisión 3%
+        </div>
+        <span class="roi-eq-op">×</span>
+        <div class="roi-eq-item">
+          <strong>€112.500</strong>
+          Comisión neta Ricardo<br><small style="font-size:.75rem;color:var(--text-dim)">(75% tras corte EXP)</small>
+        </div>
+        <span class="roi-eq-op">−</span>
+        <div class="roi-eq-item">
+          <strong>€600</strong>
+          Fee fijo mes 4+
+        </div>
+        <span class="roi-eq-op">−</span>
+        <div class="roi-eq-item">
+          <strong>€13.500</strong>
+          Variable ITMANO 12%
+        </div>
+        <span class="roi-eq-op">=</span>
+        <div class="roi-eq-item roi-eq-result">
+          <strong>€98.400</strong>
+          Neto para Ricardo
+        </div>
+      </div>
+    </div>
+
+    <div class="pricing-grid reveal reveal-delay-4">
+
+      <div class="pricing-card">
+        <div class="pricing-phase">Fase 1 · Meses 1 al 3</div>
+        <div class="pricing-name">Construcción y testeo</div>
+        <div class="pricing-amount">
+          <span class="pricing-currency">€</span>
+          <span class="pricing-num">1.200</span>
+        </div>
+        <div class="pricing-period">al mes · sin variable · 3 meses</div>
+        <div class="pricing-variable">Sin porcentaje variable en esta fase. ITMANO asume el riesgo de la construcción.</div>
+        <div class="pricing-includes">
+          <div class="pricing-include-item"><span class="check">✓</span>Brief de posicionamiento IARS</div>
+          <div class="pricing-include-item"><span class="check">✓</span>2 lead magnets con datos reales de mercado</div>
+          <div class="pricing-include-item"><span class="check">✓</span>2 landing pages con micro-filtro integrado</div>
+          <div class="pricing-include-item"><span class="check">✓</span>Sistema de email completo (bienvenida + newsletter)</div>
+          <div class="pricing-include-item"><span class="check">✓</span>CRM ITMANO configurado para IARS</div>
+          <div class="pricing-include-item"><span class="check">✓</span>Scripts WhatsApp por perfil A / B</div>
+          <div class="pricing-include-item"><span class="check">✓</span>Creatividades Meta Ads + lanzamiento en mes 3</div>
+          <div class="pricing-include-item"><span class="check">✓</span>3 sesiones mensuales de estrategia</div>
+        </div>
+      </div>
+
+      <div class="pricing-card primary">
+        <div class="pricing-phase">Fase 2 · Mes 4 en adelante</div>
+        <div class="pricing-name">Operación continua</div>
+        <div class="pricing-amount">
+          <span class="pricing-currency">€</span>
+          <span class="pricing-num">600</span>
+        </div>
+        <div class="pricing-period">al mes · fijo · + variable sobre cierres del sistema</div>
+        <div class="pricing-variable">+ 12% sobre comisión neta de cierres atribuibles al sistema. Si no hay cierres del sistema, solo el fee fijo de €600.</div>
+        <div class="pricing-includes">
+          <div class="pricing-include-item"><span class="check">✓</span>Gestión activa Meta Ads (pujas, creatividades, A/B)</div>
+          <div class="pricing-include-item"><span class="check">✓</span>Actualización mensual de lead magnets</div>
+          <div class="pricing-include-item"><span class="check">✓</span>Optimización de secuencias de nurturing</div>
+          <div class="pricing-include-item"><span class="check">✓</span>10 piezas de contenido mensual (Instagram + LinkedIn)</div>
+          <div class="pricing-include-item"><span class="check">✓</span>Revisión de pipeline y CRM</div>
+          <div class="pricing-include-item"><span class="check">✓</span>Reporte mensual + reunión estratégica 45 min</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="reveal">
+      <table class="commission-table">
+        <thead>
+          <tr>
+            <th>Operación</th>
+            <th>Comisión bruta (3%)</th>
+            <th>Ricardo neto (75%)</th>
+            <th>ITMANO variable (12%)</th>
+            <th>Ricardo final</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Villa €5M</td>
+            <td class="accent">€150.000</td>
+            <td>€112.500</td>
+            <td>€13.500</td>
+            <td class="green">€98.400 <small style="opacity:.6">(-€600 fee)</small></td>
+          </tr>
+          <tr>
+            <td>Villa €8M</td>
+            <td class="accent">€240.000</td>
+            <td>€180.000</td>
+            <td>€21.600</td>
+            <td class="green">€157.800 <small style="opacity:.6">(-€600 fee)</small></td>
+          </tr>
+          <tr>
+            <td>Villa €13.8M (catálogo)</td>
+            <td class="accent">€414.000</td>
+            <td>€310.500</td>
+            <td>€37.260</td>
+            <td class="green">€272.640 <small style="opacity:.6">(-€600 fee)</small></td>
+          </tr>
+          <tr>
+            <td>Obra nueva €600K</td>
+            <td class="accent">€18.000</td>
+            <td>€13.500</td>
+            <td>€1.620</td>
+            <td class="green">€11.280 <small style="opacity:.6">(-€600 fee)</small></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="commission-note">
+        El variable de ITMANO aplica únicamente sobre comisiones de operaciones cuyos leads entraron a través del sistema construido — no sobre referidos actuales ni contactos directos previos al inicio. La inversión publicitaria de Meta Ads (recomendada: €500-800/mes) es adicional al fee ITMANO y la gestiona el propio Ricardo.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-brand">ITMANO · Growth Partner · Real Estate</div>
+    <p class="footer-text">Documento confidencial preparado para Ricardo Sierra · IARS-IAO · Mayo 2026</p>
+  </div>
+</footer>
+
+<script>
+  // NAV VISIBILITY
+  const nav = document.getElementById('nav');
+  const hero = document.getElementById('hero');
+  const heroObs = new IntersectionObserver(([e]) => {
+    nav.classList.toggle('visible', !e.isIntersecting);
+  }, { threshold: 0.1 });
+  heroObs.observe(hero);
+
+  // SCROLL REVEAL
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => revealObs.observe(el));
+</script>
+
+</body>
+</html>
