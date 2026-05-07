@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan de Crecimiento · Ana Laura Oviedo · ITMANO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #090B0F;
+  --bg2:     #0F1218;
+  --bg3:     #151A22;
+  --bg4:     #1C2330;
+  --text:    #E8E6E0;
+  --text2:   #8C8A84;
+  --text3:   #55534E;
+  --accent:  #7EB8D4;
+  --accent2: #5A9DBF;
+  --green:   #5BA87A;
+  --amber:   #C4884E;
+  --border:  rgba(126,184,212,0.14);
+  --border2: rgba(255,255,255,0.06);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Figtree',sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.9rem 2.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(9,11,15,0.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border2);transform:translateY(-100%);transition:transform .35s ease}
+.nav.show{transform:translateY(0)}
+.nav-brand{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500}
+.nav-links{display:flex;gap:1.75rem;list-style:none}
+.nav-links a{font-size:11px;letter-spacing:.05em;color:var(--text2);transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+@media(max-width:700px){.nav-links{display:none}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:6rem 2rem}
+.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(126,184,212,.06) 0%,transparent 65%);pointer-events:none}
+.hero-ghost{position:absolute;bottom:-4rem;right:-2rem;font-family:'Playfair Display',serif;font-size:clamp(160px,26vw,320px);font-weight:400;line-height:1;color:rgba(126,184,212,0.035);pointer-events:none;user-select:none}
+.hero-content{text-align:center;position:relative;z-index:1;max-width:760px;animation:fadeUp .9s ease both}
+.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;font-weight:500}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,56px);font-weight:400;line-height:1.15;margin-bottom:.6rem}
+.hero-title em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:16px;color:var(--text2);font-weight:300;margin-bottom:3rem;line-height:1.7;max-width:600px;margin-left:auto;margin-right:auto}
+.hero-stats{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:1.5rem 0}
+.stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;color:var(--text)}
+.stat-lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-top:4px}
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:pulse 2.2s ease infinite}
+.scroll-hint span{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--text3)}
+.scroll-line{width:1px;height:28px;background:linear-gradient(to bottom,var(--accent),transparent)}
+
+/* SECTIONS */
+section{padding:6rem 0;border-top:1px solid var(--border2);position:relative;overflow:hidden}
+.container{max-width:1000px;margin:0 auto;padding:0 2.5rem}
+.s-ghost{position:absolute;top:-2rem;right:-1rem;font-family:'Playfair Display',serif;font-size:clamp(100px,18vw,210px);font-weight:400;line-height:1;color:rgba(255,255,255,0.022);pointer-events:none;user-select:none}
+.s-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-weight:500}
+.s-title{font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,38px);font-weight:400;line-height:1.2;margin-bottom:.75rem}
+.s-title em{font-style:italic;color:var(--accent)}
+.s-desc{font-size:15px;color:var(--text2);font-weight:300;line-height:1.7;max-width:620px;margin-bottom:3rem}
+
+/* BLOQUEOS */
+.bloqueos-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:700px){.bloqueos-grid{grid-template-columns:1fr}}
+.bloqueo-card{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:1.5rem;transition:border-color .3s,transform .3s;position:relative;overflow:hidden}
+.bloqueo-card:hover{border-color:var(--border);transform:translateY(-2px)}
+.bloqueo-card.wide{grid-column:1/-1}
+@media(max-width:700px){.bloqueo-card.wide{grid-column:1}}
+.bloqueo-num{font-family:'Playfair Display',serif;font-size:44px;font-weight:400;line-height:1;color:rgba(255,255,255,0.05);position:absolute;top:.5rem;right:1rem;pointer-events:none}
+.bloqueo-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:3px 10px;border-radius:4px;margin-bottom:.875rem}
+.tag-red{background:rgba(184,90,90,0.12);color:#C97070}
+.tag-amb{background:rgba(196,136,78,0.12);color:#D4975E}
+.bloqueo-title{font-size:15px;font-weight:600;margin-bottom:.4rem;color:var(--text)}
+.bloqueo-body{font-size:13px;color:var(--text2);line-height:1.65}
+.bloqueo-quote{font-size:12px;color:var(--accent2);font-style:italic;margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border2)}
+
+/* OBJETIVOS */
+.obj-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+@media(max-width:800px){.obj-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.obj-grid{grid-template-columns:1fr}}
+.obj-card{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:1.25rem;transition:border-color .3s}
+.obj-card:hover{border-color:var(--border)}
+.obj-icon{width:32px;height:32px;border-radius:8px;background:rgba(126,184,212,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:.875rem}
+.obj-icon svg{width:16px;height:16px;stroke:var(--accent);fill:none;stroke-width:2}
+.obj-title{font-size:13px;font-weight:600;margin-bottom:.3rem;color:var(--text)}
+.obj-body{font-size:12px;color:var(--text2);line-height:1.6}
+.obj-period{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.4rem}
+
+/* ACCIONES */
+.accion{background:var(--bg2);border:1px solid var(--border2);border-radius:18px;padding:2.5rem;margin-bottom:1.5rem;position:relative;overflow:hidden;transition:border-color .3s}
+.accion:hover{border-color:var(--border)}
+.accion-ghost{position:absolute;top:-1rem;right:-.5rem;font-family:'Playfair Display',serif;font-size:120px;font-weight:400;color:rgba(255,255,255,0.03);line-height:1;pointer-events:none}
+.accion-badge{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:.5rem}
+.accion-title{font-family:'Playfair Display',serif;font-size:clamp(19px,2.5vw,25px);font-weight:400;line-height:1.25;color:var(--text)}
+.accion-title em{font-style:italic;color:var(--accent)}
+.accion-resolves{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.875rem}
+.resolve-pill{font-size:10px;font-weight:500;padding:2px 9px;border-radius:20px;background:rgba(126,184,212,0.1);color:var(--accent);border:1px solid rgba(126,184,212,0.2)}
+.accion-body{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:2rem;max-width:680px}
+.accion-body strong{color:var(--text);font-weight:600}
+
+.flow{display:flex;align-items:stretch;gap:0;margin-bottom:2rem}
+.flow-step{flex:1;background:var(--bg3);border:1px solid var(--border2);padding:1rem 1.125rem;position:relative;min-height:90px}
+.flow-step:first-child{border-radius:10px 0 0 10px}
+.flow-step:last-child{border-radius:0 10px 10px 0}
+.flow-step:not(:first-child){border-left:none}
+.flow-step::after{content:'';position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:9px solid var(--bg3);z-index:2}
+.flow-step:last-child::after{display:none}
+.flow-step-n{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.35rem}
+.flow-step-t{font-size:13px;font-weight:500;color:var(--text);margin-bottom:.25rem;line-height:1.3}
+.flow-step-d{font-size:11px;color:var(--text3);line-height:1.5}
+@media(max-width:700px){.flow{flex-direction:column}.flow-step{border-radius:8px!important;border-left:1px solid var(--border2)!important;min-height:auto}.flow-step::after{display:none}.flow-step:not(:last-child){margin-bottom:.5rem}}
+
+.accion-items{display:grid;grid-template-columns:1fr 1fr;gap:.625rem}
+@media(max-width:600px){.accion-items{grid-template-columns:1fr}}
+.accion-item{display:flex;align-items:flex-start;gap:.625rem;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:.75rem .875rem}
+.accion-item-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:.35rem}
+.accion-item-text{font-size:12px;color:var(--text2);line-height:1.5}
+.accion-item-text strong{color:var(--text);font-weight:500}
+
+.market-strip{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.5rem;display:flex;gap:2rem;flex-wrap:wrap;align-items:center}
+.market-strip-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;white-space:nowrap}
+.market-item{text-align:center}
+.market-num{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:var(--text);line-height:1}
+.market-desc{font-size:10px;color:var(--text3);line-height:1.4;margin-top:3px}
+
+.crm-highlight{background:var(--bg3);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:1rem 1.25rem;margin-bottom:1.5rem}
+.crm-highlight-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:.4rem}
+.crm-highlight-body{font-size:12px;color:var(--text2);line-height:1.65}
+
+/* CRONOGRAMA */
+.tl-track{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;position:relative;margin-top:1.5rem}
+.tl-track::before{content:'';position:absolute;top:20px;left:calc(16.67% + 1.5rem);right:calc(16.67% + 1.5rem);height:1px;background:linear-gradient(to right,var(--accent2),rgba(126,184,212,0.2));z-index:0}
+@media(max-width:700px){.tl-track{grid-template-columns:1fr}.tl-track::before{display:none}}
+.tl-phase{position:relative;z-index:1}
+.tl-dot-wrap{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+.tl-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--accent2);background:var(--bg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tl-dot-inner{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.tl-phase-name{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text)}
+.tl-phase.launch .tl-dot{border-color:var(--amber)}
+.tl-phase.launch .tl-dot-inner{background:var(--amber)}
+.tl-phase.launch .tl-phase-name{color:var(--amber)}
+.tl-phase.op .tl-dot{border-color:var(--green)}
+.tl-phase.op .tl-dot-inner{background:var(--green)}
+.tl-phase.op .tl-phase-name{color:var(--green)}
+.tl-period{font-size:12px;color:var(--accent);margin-bottom:.75rem;font-weight:500}
+.tl-phase.launch .tl-period{color:var(--amber)}
+.tl-phase.op .tl-period{color:var(--green)}
+.tl-items{display:flex;flex-direction:column;gap:.5rem}
+.tl-item-line{font-size:12px;color:var(--text2);display:flex;align-items:flex-start;gap:.5rem;line-height:1.5}
+.tl-item-line::before{content:'—';color:var(--text3);flex-shrink:0}
+.meta-badge{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:4px;background:rgba(196,136,78,0.15);color:var(--amber);border:1px solid rgba(196,136,78,0.25);margin-top:.5rem}
+
+/* TRABAJO MENSUAL */
+.monthly-intro{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:2rem;margin-bottom:2rem}
+.monthly-intro-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;margin-bottom:.5rem}
+.monthly-intro-body{font-size:14px;color:var(--text2);line-height:1.7;font-weight:300}
+.monthly-intro-body strong{color:var(--text);font-weight:600}
+.monthly-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+@media(max-width:700px){.monthly-grid{grid-template-columns:1fr}}
+.monthly-card{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:1.5rem;transition:border-color .3s}
+.monthly-card:hover{border-color:var(--border)}
+.monthly-freq{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:2px 9px;border-radius:4px;background:rgba(126,184,212,0.1);color:var(--accent);border:1px solid rgba(126,184,212,0.2);margin-bottom:.75rem}
+.monthly-card-icon{width:34px;height:34px;border-radius:8px;background:rgba(126,184,212,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:.875rem}
+.monthly-card-icon svg{width:16px;height:16px;stroke:var(--accent);fill:none;stroke-width:2}
+.monthly-card.ads-card .monthly-card-icon{background:rgba(196,136,78,0.12)}
+.monthly-card.ads-card .monthly-card-icon svg{stroke:var(--amber)}
+.monthly-card.ads-card .monthly-freq{background:rgba(196,136,78,0.1);color:var(--amber);border-color:rgba(196,136,78,0.25)}
+.monthly-card-title{font-size:14px;font-weight:600;margin-bottom:.4rem;color:var(--text)}
+.monthly-card-body{font-size:12px;color:var(--text2);line-height:1.65}
+.monthly-card-items{margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border2);display:flex;flex-direction:column;gap:.35rem}
+.monthly-card-item{font-size:11px;color:var(--text3);display:flex;align-items:flex-start;gap:.5rem;line-height:1.45}
+.monthly-card-item::before{content:'·';color:var(--accent);flex-shrink:0;font-size:14px;line-height:1.1}
+.monthly-total{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.monthly-total-label{font-size:13px;color:var(--text2)}
+.monthly-total-label strong{color:var(--text);font-weight:600}
+.monthly-total-value{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--accent)}
+
+/* INVERSIÓN */
+.roi-block{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:2.5rem;margin-bottom:2rem}
+.roi-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;margin-bottom:.5rem}
+.roi-sub{font-size:14px;color:var(--text2);font-weight:300;margin-bottom:2rem;line-height:1.7}
+.roi-eq{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.5rem}
+.roi-box{background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:1rem 1.5rem;text-align:center;min-width:120px}
+.roi-box.highlight{border-color:var(--accent);background:rgba(126,184,212,0.06)}
+.roi-box.result{border-color:var(--green);background:rgba(91,168,122,0.06)}
+.roi-num{font-family:'Playfair Display',serif;font-size:24px;font-weight:400;color:var(--text);line-height:1}
+.roi-lbl{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-top:4px;line-height:1.4}
+.roi-op{font-size:22px;color:var(--text3);padding:0 .2rem}
+.roi-note{font-size:13px;color:var(--text2);text-align:center;max-width:580px;margin:0 auto;line-height:1.7;font-weight:300}
+.roi-note strong{color:var(--accent);font-weight:600}
+
+/* PRICING TABLE */
+.pricing-phases{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:2rem}
+@media(max-width:700px){.pricing-phases{grid-template-columns:1fr}}
+.phase-card{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;padding:2rem;position:relative;transition:border-color .3s}
+.phase-card:hover{border-color:var(--border)}
+.phase-card.active{border-color:var(--accent)}
+.phase-tag{position:absolute;top:-11px;left:1.5rem;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:4px 12px;border-radius:4px}
+.tag-build{background:var(--accent);color:var(--bg)}
+.tag-op{background:var(--green);color:var(--bg)}
+.phase-name{font-size:13px;font-weight:600;color:var(--text2);margin-bottom:.25rem;letter-spacing:.04em}
+.phase-duration{font-size:11px;color:var(--text3);margin-bottom:1.5rem}
+.phase-price-row{display:flex;align-items:baseline;gap:.3rem;margin-bottom:.25rem}
+.phase-currency{font-size:16px;color:var(--text2)}
+.phase-num{font-family:'Playfair Display',serif;font-size:44px;font-weight:400;line-height:1;color:var(--text)}
+.phase-per{font-size:13px;color:var(--text3);margin-bottom:.375rem}
+.phase-variable{font-size:13px;margin-bottom:1.5rem}
+.phase-variable.no-var{color:var(--text3);font-style:italic}
+.phase-variable.with-var{color:var(--green);font-weight:500}
+.phase-divider{border:none;border-top:1px solid var(--border2);margin-bottom:1.25rem}
+.phase-includes-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);font-weight:600;margin-bottom:.75rem}
+.phase-items{display:flex;flex-direction:column;gap:.5rem}
+.phase-item{display:flex;align-items:flex-start;gap:.625rem;font-size:13px;color:var(--text2);line-height:1.5}
+.phase-check-blue{color:var(--accent);flex-shrink:0;font-size:13px;margin-top:1px}
+.phase-check-green{color:var(--green);flex-shrink:0;font-size:13px;margin-top:1px}
+
+/* COMMISSION NOTE */
+.commission-note{background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:1.25rem 1.5rem;margin-top:2rem}
+.commission-note-title{font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem}
+.commission-rows{display:flex;flex-direction:column;gap:.25rem}
+.commission-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:.375rem 0;border-bottom:1px solid var(--border2)}
+.commission-row:last-child{border-bottom:none}
+.commission-label{color:var(--text2)}
+.commission-value{color:var(--text);font-weight:500}
+.commission-highlight{color:var(--accent);font-weight:600}
+.commission-green{color:var(--green);font-weight:600}
+.commission-subtext{font-size:11px;color:var(--text3);margin-top:.75rem;line-height:1.6;padding-top:.75rem;border-top:1px solid var(--border2)}
+
+/* FOOTER */
+footer{padding:3rem 0;border-top:1px solid var(--border2);text-align:center}
+.footer-brand{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--text3)}
+.footer-copy{font-size:11px;color:var(--text3);margin-top:.5rem;font-style:italic}
+
+/* UTILS */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:.9}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-brand">ITMANO &times; Zona Norte System</div>
+  <ul class="nav-links">
+    <li><a href="#situacion">Situación</a></li>
+    <li><a href="#objetivos">Objetivos</a></li>
+    <li><a href="#plan">Plan</a></li>
+    <li><a href="#cronograma">Cronograma</a></li>
+    <li><a href="#mensual">Trabajo mensual</a></li>
+    <li><a href="#inversion">Inversión</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-ghost">ZN</div>
+  <div class="hero-content">
+    <p class="eyebrow">ITMANO · Plan estratégico · Mayo 2026</p>
+    <h1 class="hero-title">El sistema de captación para<br><em>Ana Laura Oviedo</em></h1>
+    <p class="hero-sub">De un pipeline incierto dependiente de referidos pasivos a un sistema predecible de captación, calificación, seguimiento y conversión en CABA y Zona Norte.</p>
+    <div class="hero-stats">
+      <div><div class="stat-num">4</div><div class="stat-lbl">Acciones de crecimiento</div></div>
+      <div><div class="stat-num">3</div><div class="stat-lbl">Meses de construcción</div></div>
+      <div><div class="stat-num">2–3</div><div class="stat-lbl">Cierres adicionales / mes</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-lbl">Externo a Red Suma</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+</header>
+
+<!-- S1: SITUACIÓN ACTUAL -->
+<section id="situacion">
+  <div class="s-ghost">01</div>
+  <div class="container">
+    <div class="reveal">
+      <p class="s-eyebrow">01 — Situación actual</p>
+      <h2 class="s-title">Los cinco bloqueos que <em>limitan el crecimiento</em></h2>
+      <p class="s-desc">Lo que sigue está basado exclusivamente en lo que confirmamos en la sesión de demo. Cada bloqueo fue identificado a partir de la operación real, no de suposiciones.</p>
+    </div>
+    <div class="bloqueos-grid reveal reveal-delay-1">
+      <div class="bloqueo-card">
+        <div class="bloqueo-num">1</div>
+        <div class="bloqueo-tag tag-red">Crítico</div>
+        <div class="bloqueo-title">Captación 100% pasiva sin control de volumen</div>
+        <div class="bloqueo-body">Todo el pipeline depende de referidos que llegan de forma espontánea. No hay mecanismo para predecir ni activar el volumen cuando el mes está tranquilo.</div>
+        <div class="bloqueo-quote">"Siempre tuve un pipeline incierto."</div>
+      </div>
+      <div class="bloqueo-card">
+        <div class="bloqueo-num">2</div>
+        <div class="bloqueo-tag tag-red">Crítico</div>
+        <div class="bloqueo-title">Sin filtro de calificación — tiempo perdido en curiosos</div>
+        <div class="bloqueo-body">Cuando llega un contacto, no existe mecanismo para saber de antemano si tiene presupuesto, urgencia y perfil real de compra antes de invertir tiempo.</div>
+        <div class="bloqueo-quote">"A mí me llaman. Yo no llamo a nadie."</div>
+      </div>
+      <div class="bloqueo-card">
+        <div class="bloqueo-num">3</div>
+        <div class="bloqueo-tag tag-red">Crítico</div>
+        <div class="bloqueo-title">Leads tibios sin sistema de seguimiento</div>
+        <div class="bloqueo-body">Cuando alguien muestra interés pero no está listo, el contacto queda en la memoria o se pierde. El 60–70% de estos leads eventualmente sí cierran — con quien los siguió mejor.</div>
+      </div>
+      <div class="bloqueo-card">
+        <div class="bloqueo-num">4</div>
+        <div class="bloqueo-tag tag-amb">Importante</div>
+        <div class="bloqueo-title">Sin presencia digital propia</div>
+        <div class="bloqueo-body">Sin web. Instagram básico. LinkedIn con 1.388 seguidores y cero contenido. En Zona Norte, donde la decisión promedio involucra USD 140.000, el comprador busca al agente online antes de llamar.</div>
+      </div>
+      <div class="bloqueo-card wide">
+        <div class="bloqueo-num">5</div>
+        <div class="bloqueo-tag tag-amb">Importante</div>
+        <div class="bloqueo-title">CRM disponible pero inutilizable — desconfianza en Red Suma</div>
+        <div class="bloqueo-body">Red Suma dispone de CRM tecnológico completo. No se usa por razones de privacidad y desconfianza en cómo la firma gestiona los datos de clientes. Sin CRM real, no hay visibilidad de pipeline ni seguimiento estructurado posible.</div>
+        <div class="bloqueo-quote">"No pondría un solo dato de mis clientes ahí."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S2: OBJETIVOS -->
+<section id="objetivos">
+  <div class="s-ghost">02</div>
+  <div class="container">
+    <div class="reveal">
+      <p class="s-eyebrow">02 — Objetivos del sistema</p>
+      <h2 class="s-title">Lo que el sistema <em>construye en 90 días</em></h2>
+      <p class="s-desc">Fuente adicional a los referidos actuales — no un reemplazo. Todo externo a Red Suma, gestionado exclusivamente por ITMANO para Ana.</p>
+    </div>
+    <div class="obj-grid reveal reveal-delay-1">
+      <div class="obj-card">
+        <div class="obj-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <div class="obj-period">Mes 1–2</div>
+        <div class="obj-title">2 lead magnets activos</div>
+        <div class="obj-body">Guía del comprador inteligente + Calculadora de rentabilidad para inversores. Anclados en el expertise legal único de Ana.</div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="obj-period">Mes 1–2</div>
+        <div class="obj-title">Micro-filtro A/B/C activo</div>
+        <div class="obj-body">Clasificación automática antes de que Ana invierta tiempo. Perfil A = llamada directa. B = nurturing. C = descarte limpio.</div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="obj-period">Mes 2</div>
+        <div class="obj-title">CRM personal activo</div>
+        <div class="obj-body">100% externo a Red Suma. Solo Ana tiene acceso. Pipeline visible, actividad en tiempo real, sin depender de la memoria.</div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.85a16 16 0 0 0 6 6l.57-1.08a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg></div>
+        <div class="obj-period">Mes 2</div>
+        <div class="obj-title">Nurturing automatizado</div>
+        <div class="obj-body">2 secuencias (comprador + inversor) de 4-6 contactos en 60-90 días. Sin intervención manual de Ana una vez activadas.</div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="obj-period">Mes 2–3</div>
+        <div class="obj-title">Presencia digital + Meta Ads</div>
+        <div class="obj-body">Landing page propia + Instagram posicionado. Campañas de Meta Ads activas desde el mes 3 para captación directa de compradores e inversores en Zona Norte.</div>
+      </div>
+      <div class="obj-card" style="border-color:rgba(91,168,122,0.3)">
+        <div class="obj-icon" style="background:rgba(91,168,122,0.12)"><svg viewBox="0 0 24 24" style="stroke:#5BA87A"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="obj-period" style="color:#5BA87A">Mes 3</div>
+        <div class="obj-title">Primeros resultados atribuibles</div>
+        <div class="obj-body">Primeros leads calificados del sistema en pipeline. Primeras operaciones atribuibles en la etapa de lanzamiento y testeo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S3: PLAN DE ACCIÓN -->
+<section id="plan">
+  <div class="s-ghost">03</div>
+  <div class="container">
+    <div class="reveal">
+      <p class="s-eyebrow">03 — Plan de acción</p>
+      <h2 class="s-title">Cuatro acciones de crecimiento, <em>en orden</em></h2>
+      <p class="s-desc">Cada acción resuelve bloqueos específicos y construye sobre la anterior. El orden importa.</p>
+    </div>
+
+    <!-- ACCIÓN 1 -->
+    <div class="accion reveal reveal-delay-1">
+      <div class="accion-ghost">1</div>
+      <div class="accion-badge">Acción 1</div>
+      <div class="accion-title">Lead magnets con criterio —<br><em>atraer perfil, no volumen</em></div>
+      <div class="accion-resolves">
+        <span class="resolve-pill">Bloqueo 1</span>
+        <span class="resolve-pill">Bloqueo 4</span>
+      </div>
+      <br>
+      <div class="market-strip">
+        <div class="market-strip-label">Contexto Zona Norte · 2026</div>
+        <div class="market-item"><div class="market-num">USD 2.889</div><div class="market-desc">Precio m² Vicente López<br>Mayor de todo GBA Norte</div></div>
+        <div class="market-item"><div class="market-num">+7%</div><div class="market-desc">Subida interanual deptos<br>GBA Norte · 2025</div></div>
+        <div class="market-item"><div class="market-num">69.461</div><div class="market-desc">Escrituras CABA 2025<br>5° mejor año en 27 años</div></div>
+      </div>
+      <div class="accion-body">El diferencial de Ana no es su catálogo — es que conoce el Código Civil y Comercial a fondo, puede decirle a un comprador si una propiedad está bien o mal valuada <strong>sin conflicto de interés</strong>, y acompaña la operación completa de forma autónoma. Los lead magnets se construyen desde ese diferencial específico, no desde un PDF genérico de inversiones.</div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-step-n">Lead magnet 1</div>
+          <div class="flow-step-t">Guía del comprador inteligente</div>
+          <div class="flow-step-d">Criterios reales para evaluar una propiedad antes de hacer oferta. Datos de Vicente López. Anclado en el expertise legal de Ana.</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-n">Lead magnet 2</div>
+          <div class="flow-step-t">Calculadora de rentabilidad</div>
+          <div class="flow-step-d">Para inversores con liquidez. Rentabilidad bruta vs promedio zona norte (4.1%). Atrae el perfil de mayor ticket.</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-n">Micro-filtro</div>
+          <div class="flow-step-t">3 preguntas al descargar</div>
+          <div class="flow-step-d">¿Uso propio o inversión? ¿Presupuesto en USD? ¿Cuándo decidís? Clasificación automática A/B/C.</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-n">Distribución</div>
+          <div class="flow-step-t">Meta Ads + web + WhatsApp</div>
+          <div class="flow-step-d">Campañas de Meta Ads activas en mes 3. Activación de base de WhatsApp existente de Ana desde mes 1.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCIÓN 2 -->
+    <div class="accion reveal reveal-delay-1">
+      <div class="accion-ghost">2</div>
+      <div class="accion-badge">Acción 2</div>
+      <div class="accion-title">Micro-filtro y CRM propio —<br><em>solo Ana, fuera de Red Suma</em></div>
+      <div class="accion-resolves">
+        <span class="resolve-pill">Bloqueo 2</span>
+        <span class="resolve-pill">Bloqueo 5</span>
+      </div>
+      <br>
+      <div class="crm-highlight">
+        <div class="crm-highlight-title">Por qué el CRM propio es no negociable para este caso</div>
+        <div class="crm-highlight-body">Ana no usa el CRM de Red Suma porque no confía en cómo la firma gestiona los datos de sus clientes. Su solución actual: datos ficticios o nada. Un CRM 100% externo, del que solo Ana tiene acceso, resuelve los dos problemas: privacidad total de sus clientes y visibilidad real de su pipeline.</div>
+      </div>
+      <div class="accion-body">La vista más importante no es el pipeline — es la <strong>actividad en tiempo real</strong>: quién descargó la guía ayer, quién abrió el email de seguimiento, quién lleva 45 días sin movimiento. Eso le dice a Ana exactamente a quién llamar hoy, sin acordarse de nada.</div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-step-n">Pregunta 1</div>
+          <div class="flow-step-t">¿Uso propio o inversión?</div>
+          <div class="flow-step-d">Define el tipo de buyer y la ruta de nurturing correcta.</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-n">Pregunta 2</div>
+          <div class="flow-step-t">¿Presupuesto definido en USD?</div>
+          <div class="flow-step-d">El dato más crítico. Sin presupuesto claro = Perfil B o C.</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-n">Pregunta 3</div>
+          <div class="flow-step-t">¿Cuándo tomás la decisión?</div>
+          <div class="flow-step-d">Menos de 60 días = A → llamada directa.<br>Más de 60 días = B → nurturing.</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-n">CRM</div>
+          <div class="flow-step-t">Pipeline en tiempo real</div>
+          <div class="flow-step-d">Solo Ana. Externo a Red Suma. Reactivación automática Perfil B cada 30 días.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCIÓN 3 -->
+    <div class="accion reveal reveal-delay-1">
+      <div class="accion-ghost">3</div>
+      <div class="accion-badge">Acción 3</div>
+      <div class="accion-title">Nurturing estructurado —<br><em>el dinero escondido en los que no están listos</em></div>
+      <div class="accion-resolves">
+        <span class="resolve-pill">Bloqueo 3</span>
+      </div>
+      <br>
+      <div class="accion-body">El 60–70% de los leads que no cierran en el primer contacto, <strong>eventualmente sí cierran</strong> — con quien los siguió mejor. Sin sistema, ese dinero se pierde. Con sistema, cada contacto recibe contenido de valor durante 90 días sin que Ana intervenga manualmente.</div>
+      <div class="accion-items">
+        <div class="accion-item"><div class="accion-item-dot"></div><div class="accion-item-text"><strong>Día 1:</strong> Confirmación de descarga + dato de mercado de su zona de búsqueda</div></div>
+        <div class="accion-item"><div class="accion-item-dot"></div><div class="accion-item-text"><strong>Día 7:</strong> Una o dos propiedades seleccionadas con criterio real — no catálogo genérico</div></div>
+        <div class="accion-item"><div class="accion-item-dot"></div><div class="accion-item-text"><strong>Día 21:</strong> Contenido legal: qué hacer antes de hacer una oferta, cómo protegerse en el boleto</div></div>
+        <div class="accion-item"><div class="accion-item-dot"></div><div class="accion-item-text"><strong>Día 45:</strong> Actualización de mercado: qué cerró en su zona y a qué valor real</div></div>
+        <div class="accion-item"><div class="accion-item-dot"></div><div class="accion-item-text"><strong>Día 60:</strong> Para inversor: análisis comprar ahora vs. esperar — precios +7% interanual en Zona Norte</div></div>
+        <div class="accion-item"><div class="accion-item-dot"></div><div class="accion-item-text"><strong>Día 75:</strong> Reactivación directa e invitación a consulta sin costo con Ana</div></div>
+      </div>
+    </div>
+
+    <!-- ACCIÓN 4 -->
+    <div class="accion reveal reveal-delay-1">
+      <div class="accion-ghost">4</div>
+      <div class="accion-badge">Acción 4</div>
+      <div class="accion-title">Presencia digital + Meta Ads —<br><em>dejar de ser invisible, sin aparecer en cámara</em></div>
+      <div class="accion-resolves">
+        <span class="resolve-pill">Bloqueo 4</span>
+      </div>
+      <br>
+      <div class="accion-body">Ana no quiere producir video. No hace falta. El contenido que necesita son <strong>datos, criterios y contexto de mercado</strong> que posicionen su expertise de Zona Norte. Y campañas de Meta Ads que lleven ese contenido exactamente al perfil correcto de comprador e inversor — desde el mes 3.</div>
+      <div class="accion-items">
+        <div class="accion-item"><div class="accion-item-dot"></div><div class="accion-item-text"><strong>Landing page:</strong> Una página con propuesta de valor, lead magnets como CTAs, y micro-filtro integrado. Sin catálogo de propiedades.</div></div>
+        <div class="accion-item"><div class="accion-item-dot"></div><div class="accion-item-text"><strong>Instagram:</strong> 2-3 posts/semana de datos de mercado — precio m² en Zona Norte, rentabilidades, qué tipología cierra más rápido. Sin cámara.</div></div>
+        <div class="accion-item"><div class="accion-item-dot" style="background:var(--amber)"></div><div class="accion-item-text"><strong>Meta Ads (mes 3):</strong> Campañas de captación directa en Facebook e Instagram. Audiencias segmentadas por zona, edad e intención de compra. Orientadas a los lead magnets para generar Perfil A y B de forma constante.</div></div>
+        <div class="accion-item"><div class="accion-item-dot" style="background:var(--amber)"></div><div class="accion-item-text"><strong>Creatividades A/B:</strong> Testeo de copies y visuales desde el primer mes de pauta. Optimización continua de CPL y calidad de lead.</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- S4: CRONOGRAMA -->
+<section id="cronograma">
+  <div class="s-ghost">04</div>
+  <div class="container">
+    <div class="reveal">
+      <p class="s-eyebrow">04 — Cronograma</p>
+      <h2 class="s-title">2 meses de construcción, 1 de lanzamiento, <em>luego el sistema corre</em></h2>
+      <p class="s-desc">La carga de trabajo está concentrada en los primeros dos meses. El mes 3 es de lanzamiento y testeo activo. A partir del mes 4, el sistema opera de forma autónoma.</p>
+    </div>
+    <div class="tl-track reveal reveal-delay-1">
+
+      <div class="tl-phase">
+        <div class="tl-dot-wrap">
+          <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+          <div class="tl-phase-name">Construcción</div>
+        </div>
+        <div class="tl-period">Meses 1–2 · Mayo–Junio</div>
+        <div class="tl-items">
+          <div class="tl-item-line">2 lead magnets diseñados y publicados</div>
+          <div class="tl-item-line">CRM personal configurado y activo</div>
+          <div class="tl-item-line">Micro-filtro A/B/C integrado</div>
+          <div class="tl-item-line">Landing page publicada con dominio propio</div>
+          <div class="tl-item-line">2 secuencias de nurturing redactadas y activas</div>
+          <div class="tl-item-line">Activación base WhatsApp de Ana</div>
+          <div class="tl-item-line">Creatividades y copies de Meta Ads preparadas</div>
+        </div>
+      </div>
+
+      <div class="tl-phase launch">
+        <div class="tl-dot-wrap">
+          <div class="tl-dot launch"><div class="tl-dot-inner"></div></div>
+          <div class="tl-phase-name">Lanzamiento y testeo</div>
+        </div>
+        <div class="tl-period">Mes 3 · Julio</div>
+        <div class="tl-items">
+          <div class="tl-item-line">Campañas de Meta Ads activas</div>
+          <div class="tl-item-line">Primeros leads clasificados en CRM</div>
+          <div class="tl-item-line">Secuencias de nurturing corriendo</div>
+          <div class="tl-item-line">A/B testing de creatividades</div>
+          <div class="tl-item-line">Optimización de CPL y calidad de lead</div>
+          <div class="tl-item-line">Primeras operaciones atribuibles al sistema</div>
+        </div>
+        <div><span class="meta-badge">Meta Ads arranca acá</span></div>
+      </div>
+
+      <div class="tl-phase op">
+        <div class="tl-dot-wrap">
+          <div class="tl-dot op"><div class="tl-dot-inner"></div></div>
+          <div class="tl-phase-name">Operación continua</div>
+        </div>
+        <div class="tl-period">Mes 4+ · Agosto →</div>
+        <div class="tl-items">
+          <div class="tl-item-line">Sistema autónomo — Ana solo atiende Perfil A</div>
+          <div class="tl-item-line">Meta Ads optimizadas mensualmente</div>
+          <div class="tl-item-line">Perfil B reactivado automáticamente cada 30 días</div>
+          <div class="tl-item-line">Nuevas creatividades y lead magnets estacionales</div>
+          <div class="tl-item-line">Reporte mensual + reunión estratégica de 45 min</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- S5: TRABAJO MENSUAL -->
+<section id="mensual">
+  <div class="s-ghost">05</div>
+  <div class="container">
+    <div class="reveal">
+      <p class="s-eyebrow">05 — Trabajo mensual</p>
+      <h2 class="s-title">Lo que ITMANO gestiona <em>cada mes a partir del mes 4</em></h2>
+      <p class="s-desc">El sistema no es "set and forget". Cada mes hay un ciclo activo de gestión, optimización y nuevos activos que mantienen el pipeline creciendo. Esto es lo que justifica el fee mensual continuo.</p>
+    </div>
+
+    <div class="monthly-intro reveal">
+      <div class="monthly-intro-title">Un sistema que se optimiza solo no existe</div>
+      <div class="monthly-intro-body">El mercado de Zona Norte cambia. Los precios suben, bajan las tasas, aparecen nuevas tipologías. Las audiencias de Meta Ads se saturan. Los leads del mes anterior evolucionan — algunos están listos, otros se enfriaron. El trabajo mensual de ITMANO es asegurarse de que <strong>el sistema siempre esté apuntando al perfil correcto con el mensaje correcto</strong>, y de que Ana nunca tenga que pensar en eso.</div>
+    </div>
+
+    <div class="monthly-grid reveal reveal-delay-1">
+
+      <div class="monthly-card ads-card">
+        <div class="monthly-freq">Mensual · Core</div>
+        <div class="monthly-card-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+        <div class="monthly-card-title">Gestión activa de Meta Ads</div>
+        <div class="monthly-card-body">Las campañas de Facebook e Instagram necesitan gestión constante para no perder performance. Cada mes ITMANO trabaja activamente en mejorar los resultados.</div>
+        <div class="monthly-card-items">
+          <div class="monthly-card-item">Nuevas creatividades — copy + visual — para evitar saturación de audiencia</div>
+          <div class="monthly-card-item">Optimización de pujas y distribución de presupuesto por ad set</div>
+          <div class="monthly-card-item">A/B testing de mensajes y visuales para bajar el CPL</div>
+          <div class="monthly-card-item">Ajuste de audiencias según calidad de leads que entran al CRM</div>
+          <div class="monthly-card-item">Expansión a nuevos segmentos cuando la audiencia principal se satura</div>
+        </div>
+      </div>
+
+      <div class="monthly-card">
+        <div class="monthly-freq">Mensual</div>
+        <div class="monthly-card-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <div class="monthly-card-title">Lead magnets y activos de captación</div>
+        <div class="monthly-card-body">Los datos del mercado cambian mensualmente. Los lead magnets que no se actualizan pierden relevancia y bajan la calidad del lead que atraen.</div>
+        <div class="monthly-card-items">
+          <div class="monthly-card-item">Actualización de datos de mercado de Vicente López y Zona Norte</div>
+          <div class="monthly-card-item">Nuevas guías estacionales según el ciclo inmobiliario</div>
+          <div class="monthly-card-item">Optimización de la calculadora de rentabilidad con precios actualizados</div>
+          <div class="monthly-card-item">Nuevos activos si el mercado presenta una oportunidad específica</div>
+        </div>
+      </div>
+
+      <div class="monthly-card">
+        <div class="monthly-freq">Mensual</div>
+        <div class="monthly-card-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.85a16 16 0 0 0 6 6l.57-1.08a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg></div>
+        <div class="monthly-card-title">Optimización de secuencias de nurturing</div>
+        <div class="monthly-card-body">Las secuencias de email y WhatsApp se analizan cada mes según tasas de apertura, clicks y conversión. Lo que no convierte se reemplaza.</div>
+        <div class="monthly-card-items">
+          <div class="monthly-card-item">Análisis de apertura y clicks de cada punto de contacto</div>
+          <div class="monthly-card-item">Reescritura de mensajes con baja performance</div>
+          <div class="monthly-card-item">Ajuste de timing entre mensajes según comportamiento del lead</div>
+          <div class="monthly-card-item">Nuevos puntos de contacto si aparece contenido de alto valor</div>
+        </div>
+      </div>
+
+      <div class="monthly-card">
+        <div class="monthly-freq">Mensual</div>
+        <div class="monthly-card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></div>
+        <div class="monthly-card-title">Contenido para Instagram — 8 a 12 piezas</div>
+        <div class="monthly-card-body">El posicionamiento de Ana como referente de Zona Norte requiere presencia constante. Sin contenido nuevo, la autoridad se erosiona.</div>
+        <div class="monthly-card-items">
+          <div class="monthly-card-item">8 a 12 piezas nuevas por mes con datos frescos de mercado</div>
+          <div class="monthly-card-item">Análisis de precio m² en Vicente López y zonas adyacentes</div>
+          <div class="monthly-card-item">Comparativas de rentabilidad para el perfil inversor</div>
+          <div class="monthly-card-item">Selección de propiedades con criterio real — no catálogo</div>
+          <div class="monthly-card-item">CTA hacia los lead magnets en piezas estratégicas</div>
+        </div>
+      </div>
+
+      <div class="monthly-card">
+        <div class="monthly-freq">Mensual</div>
+        <div class="monthly-card-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="monthly-card-title">Revisión de pipeline y CRM</div>
+        <div class="monthly-card-body">El CRM es un activo vivo. Cada mes ITMANO revisa el estado del pipeline y activa lo que necesita intervención.</div>
+        <div class="monthly-card-items">
+          <div class="monthly-card-item">Identificación de Perfil B listos para reactivar en el mes</div>
+          <div class="monthly-card-item">Limpieza de leads sin actividad por más de 90 días</div>
+          <div class="monthly-card-item">Marcado de leads atribuibles para cálculo de comisión variable</div>
+          <div class="monthly-card-item">Ajuste de reglas de reactivación según comportamiento real</div>
+        </div>
+      </div>
+
+      <div class="monthly-card" style="border-color:rgba(91,168,122,0.25)">
+        <div class="monthly-freq" style="background:rgba(91,168,122,0.1);color:#5BA87A;border-color:rgba(91,168,122,0.3)">Mensual · Estratégico</div>
+        <div class="monthly-card-icon" style="background:rgba(91,168,122,0.1)"><svg viewBox="0 0 24 24" style="stroke:#5BA87A"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="monthly-card-title">Reporte mensual + reunión estratégica</div>
+        <div class="monthly-card-body">Cada mes Ana recibe un reporte completo de resultados y una reunión de 45 minutos con ITMANO para revisar qué ajustar.</div>
+        <div class="monthly-card-items">
+          <div class="monthly-card-item">Dashboard: leads entrados, clasificados y conversiones atribuibles</div>
+          <div class="monthly-card-item">Performance de Meta Ads: CPL, alcance, calidad de audiencia</div>
+          <div class="monthly-card-item">Operaciones cerradas con atribución al sistema</div>
+          <div class="monthly-card-item">Plan de acción ajustado para el mes siguiente</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="monthly-total reveal">
+      <div class="monthly-total-label">En resumen: cada mes ITMANO gestiona activamente <strong>campañas, contenido, nurturing, pipeline y optimización</strong> — para que Ana solo tenga que atender a los leads que ya llegaron calificados.</div>
+      <div class="monthly-total-value">6 entregables activos / mes</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- S6: INVERSIÓN -->
+<section id="inversion">
+  <div class="s-ghost">06</div>
+  <div class="container">
+    <div class="reveal">
+      <p class="s-eyebrow">06 — Inversión</p>
+      <h2 class="s-title">La matemática del <em>Zona Norte System</em></h2>
+      <p class="s-desc">ITMANO no es una agencia de marketing. Somos un Growth Partner: diseñamos el sistema, lo construimos, lo activamos y ganamos más cuando vos ganás más.</p>
+    </div>
+
+    <!-- ROI -->
+    <div class="roi-block reveal">
+      <div class="roi-title">El cálculo — fase de operación (mes 4+)</div>
+      <div class="roi-sub">Con tus números reales: ticket promedio USD 140.000, comisión neta promedio de USD 3.600 por operación considerando el mix de propias y compartidas de 2024.</div>
+      <div class="roi-eq">
+        <div class="roi-box">
+          <div class="roi-num">1</div>
+          <div class="roi-lbl">Operación extra<br>generada por el sistema</div>
+        </div>
+        <div class="roi-op">×</div>
+        <div class="roi-box highlight">
+          <div class="roi-num" style="color:var(--accent)">USD 3.600</div>
+          <div class="roi-lbl" style="color:var(--accent2)">Comisión neta<br>promedio real</div>
+        </div>
+        <div class="roi-op">−</div>
+        <div class="roi-box">
+          <div class="roi-num">USD 600</div>
+          <div class="roi-lbl">Fee fijo<br>mes 4+</div>
+        </div>
+        <div class="roi-op">−</div>
+        <div class="roi-box">
+          <div class="roi-num">USD 540</div>
+          <div class="roi-lbl">Variable 15%<br>sobre esa op</div>
+        </div>
+        <div class="roi-op">=</div>
+        <div class="roi-box result">
+          <div class="roi-num" style="color:var(--green)">USD 2.460</div>
+          <div class="roi-lbl" style="color:var(--green)">Neto para Ana<br>por esa operación</div>
+        </div>
+      </div>
+      <div class="roi-note">El sistema necesita generar <strong>1 SOLA operación atribuible por mes para que los números CUBRAN POR COMPLETO EL SISTEMA y deje margen real</strong>. Con 2 operaciones por mes, el neto es USD 6.120 — con un costo total para Ana de USD 1.680 (USD 600 fijo + USD 1.080 variable).</div>
+    </div>
+
+    <!-- PRICING PHASES -->
+    <div class="pricing-phases reveal reveal-delay-1">
+
+      <div class="phase-card active">
+        <div class="phase-tag tag-build">Construcción + testeo</div>
+        <div class="phase-name">Zona Norte System</div>
+        <div class="phase-duration">Meses 1, 2 y 3 · 3 meses en total</div>
+        <div class="phase-price-row">
+          <span class="phase-currency">USD</span>
+          <span class="phase-num">800</span>
+        </div>
+        <div class="phase-per">por mes · durante los primeros 3 meses</div>
+        <div class="phase-variable no-var">Sin componente variable en esta fase</div>
+        <hr class="phase-divider">
+        <div class="phase-includes-label">Incluye</div>
+        <div class="phase-items">
+          <div class="phase-item"><span class="phase-check-blue">✓</span>2 lead magnets diseñados, producidos y publicados</div>
+          <div class="phase-item"><span class="phase-check-blue">✓</span>CRM personal externo a Red Suma configurado</div>
+          <div class="phase-item"><span class="phase-check-blue">✓</span>Micro-filtro A/B/C integrado en todos los puntos de entrada</div>
+          <div class="phase-item"><span class="phase-check-blue">✓</span>2 secuencias de nurturing automatizadas (comprador + inversor)</div>
+          <div class="phase-item"><span class="phase-check-blue">✓</span>Landing page propia con dominio independiente a Red Suma</div>
+          <div class="phase-item"><span class="phase-check-blue">✓</span>12 piezas de contenido para Instagram mes 1</div>
+          <div class="phase-item"><span class="phase-check-blue">✓</span>Campañas de Meta Ads lanzadas y activas en mes 3</div>
+          <div class="phase-item"><span class="phase-check-blue">✓</span>Creatividades y A/B testing de la pauta</div>
+        </div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-tag tag-op">Operación continua</div>
+        <div class="phase-name">Zona Norte System</div>
+        <div class="phase-duration">Mes 4 en adelante · renovación mensual</div>
+        <div class="phase-price-row">
+          <span class="phase-currency">USD</span>
+          <span class="phase-num">600</span>
+        </div>
+        <div class="phase-per">por mes · fee fijo de operación</div>
+        <div class="phase-variable with-var">+ 15% sobre comisiones atribuibles al sistema</div>
+        <hr class="phase-divider">
+        <div class="phase-includes-label">Cada mes incluye</div>
+        <div class="phase-items">
+          <div class="phase-item"><span class="phase-check-green">✓</span>Gestión activa de Meta Ads — nuevas creatividades y optimización</div>
+          <div class="phase-item"><span class="phase-check-green">✓</span>Actualización mensual de lead magnets con datos de mercado</div>
+          <div class="phase-item"><span class="phase-check-green">✓</span>Optimización de secuencias de nurturing según performance real</div>
+          <div class="phase-item"><span class="phase-check-green">✓</span>8 a 12 piezas nuevas de contenido para Instagram</div>
+          <div class="phase-item"><span class="phase-check-green">✓</span>Revisión de pipeline y CRM — reactivaciones y limpieza</div>
+          <div class="phase-item"><span class="phase-check-green">✓</span>Reporte mensual de resultados + reunión estratégica de 45 min</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COMMISSION NOTE -->
+    <div class="commission-note reveal">
+      <div class="commission-note-title">Referencia de comisiones de Ana</div>
+      <div class="commission-rows">
+        <div class="commission-row">
+          <span class="commission-label">Ticket promedio operación</span>
+          <span class="commission-value">USD 140.000</span>
+        </div>
+        <div class="commission-row">
+          <span class="commission-label">Comisión total (ambas puntas)</span>
+          <span class="commission-value">7% = USD 9.800 bruto</span>
+        </div>
+        <div class="commission-row">
+          <span class="commission-label">Corte de Ana (ambas puntas propias)</span>
+          <span class="commission-value">50% − 1% transaccional ≈ USD 4.760</span>
+        </div>
+        <div class="commission-row">
+          <span class="commission-label">Promedio real 2024 (mix compartidas)</span>
+          <span class="commission-highlight">≈ USD 3.600 por operación</span>
+        </div>
+        <div class="commission-row">
+          <span class="commission-label">Variable ITMANO (15% de USD 3.600)</span>
+          <span class="commission-value">USD 540 por operación atribuida</span>
+        </div>
+        <div class="commission-row">
+          <span class="commission-label">Neto para Ana por operación atribuida (mes 4+)</span>
+          <span class="commission-green">USD 2.460 — cubierto el fee y el variable</span>
+        </div>
+      </div>
+      <div class="commission-subtext">El variable del 15% aplica exclusivamente sobre comisiones generadas por leads que entraron a través del sistema — nunca sobre los referidos existentes de Ana. Los 3 primeros meses no tienen componente variable: ITMANO asume el riesgo de la construcción.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-brand">ITMANO · Growth Partner · Real Estate</div>
+    <div class="footer-copy">Documento confidencial preparado para Ana Laura Oviedo · Mayo 2026</div>
+  </div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }});
+}, { threshold: 0.07 });
+reveals.forEach(r => obs.observe(r));
+
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('show', window.scrollY > 80);
+}, { passive: true });
+</script>
+</body>
+</html>
