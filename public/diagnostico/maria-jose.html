@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico de captación · María José · ITMANO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #090e17;
+      --bg-card:    #0e1520;
+      --bg-callout: #0b1828;
+      --border:     rgba(255,255,255,0.06);
+      --text-1:     #dde6f0;
+      --text-2:     #7a8fa8;
+      --text-3:     #3d5268;
+      --blue:       #5ba3e0;
+      --purple:     #a078df;
+      --grad:       linear-gradient(135deg, #5ba3e0, #a078df);
+    }
+
+    html { background: var(--bg); }
+
+    body {
+      font-family: 'Instrument Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text-1);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade { opacity: 0; animation: fadeUp .7s ease forwards; }
+    .d1  { animation-delay: .08s; }
+    .d2  { animation-delay: .2s; }
+    .d3  { animation-delay: .34s; }
+    .d4  { animation-delay: .48s; }
+    .d5  { animation-delay: .6s; }
+    .d6  { animation-delay: .74s; }
+    .d7  { animation-delay: .88s; }
+    .d8  { animation-delay: 1.02s; }
+
+    /* ── Layout ── */
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    /* ── Header ── */
+    .header {
+      padding: 40px 0 36px;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .logo img {
+      height: 28px;
+      display: block;
+    }
+
+    .date-stamp {
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+
+    .badge-diag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+    }
+
+    .badge-diag::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--grad);
+    }
+
+    h1.headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 5vw, 34px);
+      font-weight: 800;
+      line-height: 1.18;
+      color: var(--text-1);
+      margin-bottom: 14px;
+      letter-spacing: -.01em;
+    }
+
+    h1.headline em {
+      font-style: italic;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .meta-line {
+      font-size: 13px;
+      color: var(--text-3);
+      margin-bottom: 28px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--grad);
+      opacity: .25;
+      margin-bottom: 28px;
+    }
+
+    /* ── Tags ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4px 10px;
+      background: var(--bg-card);
+    }
+
+    /* ── Stats strip ── */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 36px 0;
+    }
+
+    .stat-cell {
+      background: var(--bg-card);
+      padding: 22px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 4.5vw, 30px);
+      font-weight: 700;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-2);
+      line-height: 1.4;
+      margin-top: 3px;
+    }
+
+    .stat-source {
+      font-size: 10px;
+      color: var(--text-3);
+      margin-top: 2px;
+    }
+
+    /* ── Intro ── */
+    .intro {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-2);
+      margin-bottom: 40px;
+    }
+
+    .intro strong, .intro .accent {
+      color: var(--text-1);
+      font-weight: 600;
+    }
+
+    .num-inline {
+      font-weight: 700;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 20px;
+    }
+
+    /* ── Cards ── */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 26px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .25s;
+    }
+
+    .card:hover {
+      border-color: rgba(91,163,224,.15);
+    }
+
+    .card-deco {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      font-weight: 800;
+      line-height: 1;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: .06;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .card-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 3px;
+      margin-bottom: 14px;
+    }
+
+    .badge-nurturing { color: #5ba3e0; background: rgba(91,163,224,.1); }
+    .badge-calificacion { color: #a078df; background: rgba(160,120,223,.1); }
+    .badge-adquisicion { color: #7db8e8; background: rgba(125,184,232,.1); }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text-1);
+      margin-bottom: 14px;
+      letter-spacing: -.01em;
+    }
+
+    .card p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text-2);
+      margin-bottom: 18px;
+    }
+
+    /* ── Callout ── */
+    .callout {
+      background: var(--bg-callout);
+      border-left: 3px solid;
+      border-image: var(--grad) 1;
+      border-radius: 0 6px 6px 0;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+    }
+
+    .callout-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 6px;
+    }
+
+    .callout p {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-2);
+      margin-bottom: 0;
+    }
+
+    /* ── Consequences ── */
+    .consequences {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .consequences li {
+      font-size: 13px;
+      color: var(--text-2);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .consequences li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    /* ── CTA ── */
+    .cta-block {
+      position: relative;
+      border-radius: 12px;
+      padding: 32px 28px;
+      background: var(--bg-card);
+      margin-bottom: 48px;
+    }
+
+    .cta-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      padding: 1px;
+      background: var(--grad);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .cta-block p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-2);
+    }
+
+    .cta-block .cta-main {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-1);
+      margin: 12px 0;
+    }
+
+    .cta-block .club-word {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 17px;
+      font-weight: 700;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cta-signature {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-3);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer img {
+      height: 20px;
+      opacity: .4;
+    }
+
+    .footer-right {
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      text-align: right;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 480px) {
+      .wrap { padding: 0 16px 60px; }
+      .header { padding: 28px 0 24px; }
+      .stats-strip { grid-template-columns: 1fr; gap: 1px; }
+      .card { padding: 22px 18px; }
+      .cta-block { padding: 24px 20px; }
+      .footer { flex-direction: column; gap: 14px; align-items: flex-start; }
+      .footer-right { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ════════════ HEADER ════════════ -->
+  <header class="header">
+
+    <div class="header-top fade d1">
+      <div class="logo">
+        <img src="/assets/Logo_Light.png" alt="ITMANO" />
+      </div>
+      <span class="date-stamp">Mayo 2026</span>
+    </div>
+
+    <div class="fade d2">
+      <span class="badge-diag">Diagnóstico de captación</span>
+    </div>
+
+    <h1 class="headline fade d3">
+      Por qué en Valencia<br />
+      las visitas <em>confirmadas</em><br />
+      se caen antes de empezar
+    </h1>
+
+    <p class="meta-line fade d3">
+      Preparado para María José &nbsp;·&nbsp; Inmobiliaria Palanca Fontestad &nbsp;·&nbsp; Rafelbuñol, Comunitat Valenciana
+    </p>
+
+    <div class="divider fade d4"></div>
+
+    <div class="tags fade d4">
+      <span class="tag">Residencial Horta Nord</span>
+      <span class="tag">Asesor de compradores</span>
+      <span class="tag">Mercado tensionado</span>
+      <span class="tag">Agencia local</span>
+    </div>
+
+  </header>
+
+  <!-- ════════════ STATS STRIP ════════════ -->
+  <div class="stats-strip fade d5">
+    <div class="stat-cell">
+      <span class="stat-num">+17,7%</span>
+      <span class="stat-label">Apreciación anual de pisos en Valencia en 2025</span>
+      <span class="stat-source">RealAdvisor · Barómetro Q4-2025</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">2.663€</span>
+      <span class="stat-label">Precio medio m² en la ciudad de Valencia. Máximo histórico</span>
+      <span class="stat-source">API Valencia · Colegio API Q4-2025</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">27%</span>
+      <span class="stat-label">De las compraventas en Comunitat Valenciana son de compradores extranjeros</span>
+      <span class="stat-source">Registradores de España · Q4-2025</span>
+    </div>
+  </div>
+
+  <!-- ════════════ INTRODUCCIÓN ════════════ -->
+  <p class="intro fade d5">
+    El mercado inmobiliario en el área metropolitana de Valencia no está flojo, está tenso. Los precios subieron
+    <span class="num-inline">+17,7%</span> en un año, la demanda supera la oferta y los compradores solventes
+    —incluido un <span class="num-inline">27%</span> extranjero— compiten por cada propiedad bien ubicada.
+    En un entorno así, el problema de captación de un asesor <strong>raramente es el mercado</strong>. Casi siempre
+    es el sistema —o la falta de él— que rodea cada oportunidad antes de que se convierta en un cierre.
+  </p>
+  <p class="intro fade d5">
+    Lo que me comentaste en nuestra conversación —propietarios que confirman la visita y cancelan en el último momento—
+    no es mala suerte ni "lo que es este trabajo". Es una señal de que existe una brecha concreta entre el momento en
+    que alguien dice "sí" y el momento en que aparece comprometido. Esa brecha tiene nombre y tiene solución.
+    A continuación te detallo los tres frenos que veo con más claridad en tu operación actual.
+  </p>
+
+  <!-- ════════════ HALLAZGOS ════════════ -->
+  <p class="section-label fade d6">3 hallazgos · captación y conversión</p>
+
+  <div class="cards">
+
+    <!-- Hallazgo 1: NURTURING -->
+    <div class="card fade d6">
+      <span class="card-deco">01</span>
+      <span class="card-badge badge-nurturing">Nurturing</span>
+      <h3>El propietario confirma la visita, pero nadie le ha preparado para tomar una decisión</h3>
+      <p>
+        En el área metropolitana de Valencia, el precio medio ha llegado a <span class="num-inline">2.663&nbsp;€/m²</span>
+        en la ciudad —y sigue subiendo. Eso hace que los propietarios estén cada vez más expuestos a información
+        contradictoria: comparativas de portales, comentarios de vecinos, noticias de precios de burbuja. Entre
+        que dicen "sí, ven a ver el piso" y el día de la visita, sin contacto de refuerzo, la mayoría llega
+        templada o directamente no llega. No es falta de interés. Es falta de proceso intermedio que mantenga
+        su compromiso activo.
+      </p>
+      <div class="callout">
+        <p class="callout-label">Lo que cambia si se resuelve</p>
+        <p>
+          Existe un protocolo de activación entre la confirmación y la visita: un mensaje estratégico en las
+          24&nbsp;h previas que refuerza la decisión del propietario, reduce la incertidumbre y llega al día
+          con un nivel de compromiso muy diferente al de "lo confirmé pero no lo había pensado bien".
+        </p>
+      </div>
+      <ul class="consequences">
+        <li>Menos visitas canceladas en el último momento sin previo aviso.</li>
+        <li>Propietarios que llegan con preguntas reales, no con dudas que justifican cancelar.</li>
+        <li>Menos tiempo tuyo invertido en visitas que no se materializan.</li>
+      </ul>
+    </div>
+
+    <!-- Hallazgo 2: CALIFICACIÓN -->
+    <div class="card fade d7">
+      <span class="card-deco">02</span>
+      <span class="card-badge badge-calificacion">Calificación</span>
+      <h3>Sin filtro previo, cada lead consume el mismo tiempo aunque su nivel de compromiso sea radicalmente distinto</h3>
+      <p>
+        El mercado valenciano acumula un <span class="num-inline">+32,2%</span> de apreciación en tres años
+        (RealAdvisor). En ese contexto, los compradores con capacidad de decisión real actúan rápido; los curiosos,
+        también. Ambos perfiles llegan con el mismo aspecto en una primera consulta y generan el mismo volumen de
+        trabajo previo a la visita. Sin un proceso de calificación que separe a quien tiene urgencia real, presupuesto
+        claro y financiación lista del que todavía está "mirando opciones", una parte significativa del esfuerzo se va
+        a conversaciones que no van a ningún sitio.
+      </p>
+      <div class="callout">
+        <p class="callout-label">Lo que cambia si se resuelve</p>
+        <p>
+          Una micro-encuesta o secuencia de preguntas sencillas antes de la visita —timeframe, situación hipotecaria,
+          motivación de compra— clasifica al lead antes de que consuma tiempo en agenda. Los compradores serios
+          la responden sin problema. Los curiosos se filtran solos.
+        </p>
+      </div>
+      <ul class="consequences">
+        <li>Solo llevas a visita a quien ya ha demostrado un nivel mínimo de compromiso e intención real.</li>
+        <li>El tiempo liberado de visitas improductivas va a trabajar contactos que sí tienen probabilidad de cierre.</li>
+        <li>La experiencia de compra para el perfil serio mejora: se siente bien atendido, no uno más en la cola.</li>
+      </ul>
+    </div>
+
+    <!-- Hallazgo 3: ADQUISICIÓN -->
+    <div class="card fade d8">
+      <span class="card-deco">03</span>
+      <span class="card-badge badge-adquisicion">Adquisición</span>
+      <h3>Sin canal propio de captación, el pipeline que tienes es solo el que la agencia decide darte</h3>
+      <p>
+        El <span class="num-inline">27%</span> de las compraventas en Comunitat Valenciana las protagonizan
+        compradores extranjeros —holandeses, alemanes, británicos y belgas principalmente, según el Consejo General
+        del Notariado. Esos perfiles buscan online, comparan en portales y, antes de llamar a una agencia,
+        investigan a la persona. Con 213 conexiones en LinkedIn y sin presencia digital propia, eres invisible
+        para ese segmento. Pero también para el comprador local que investiga antes de actuar: hoy casi todo
+        el proceso de decisión empieza en digital y acaba en una llamada. Si no apareces ahí, la oportunidad
+        va a otro asesor que sí aparece.
+      </p>
+      <div class="callout">
+        <p class="callout-label">Lo que cambia si se resuelve</p>
+        <p>
+          Tener un canal propio de captación —aunque sea pequeño— no depende de anuncios masivos ni de transformar
+          tu marca de un día para otro. Depende de construir una huella digital mínima que posicione tu especialización
+          en la Horta Nord y genere confianza antes de que alguien te contacte. El lead que llega así ya viene
+          calificado: te eligió a ti.
+        </p>
+      </div>
+      <ul class="consequences">
+        <li>Dejas de depender al 100% del flujo que genera la agencia para ti.</li>
+        <li>Comienzas a atraer compradores que investigan online antes de llamar —los de mayor calidad de decisión.</li>
+        <li>A medio plazo, tienes un activo de captación que trabaja aunque tú no estés activamente prospectando.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ════════════ CTA ════════════ -->
+  <div class="cta-block fade d8">
+    <p>
+      Este diagnóstico refleja lo que veo desde fuera con la información que tengo de tu perfil y del mercado
+      de la Comunitat Valenciana. No es un recurso genérico —es lo que detecto como más relevante para tu operación
+      ahora mismo.
+    </p>
+    <p class="cta-main">
+      Si llegaste hasta aquí y algo de esto te pareció lógico, mándame un mensaje con la palabra
+      <span class="club-word">'club'</span> y te envío una invitación a un grupo privado donde compartimos
+      contenido gratuito para crecer en el mercado inmobiliario.
+    </p>
+    <p>
+      Sin compromisos. Sin pitch. Solo contenido concreto para asesores que quieren construir algo más sólido.
+    </p>
+    <div class="cta-signature">
+      Preparado por Dylan Vergara · ITMANO
+    </div>
+  </div>
+
+  <!-- ════════════ FOOTER ════════════ -->
+  <footer class="footer fade d8">
+    <img src="/assets/Logo_Light.png" alt="ITMANO" />
+    <div class="footer-right">
+      Growth Partner para Real Estate
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
+
+<!--
+MENSAJE LINKEDIN — COPIAR Y PERSONALIZAR:
+
+Hola María José 👋
+
+Revisé tu perfil y tu operación como asesora de compradores en la Horta Nord y armé algo concreto para ti.
+
+No es un recurso genérico — son 3 frenos que veo en tu captación actual basándome en lo que está pasando en el mercado de Valencia este año.
+
+Está aquí: [URL]
+
+Tarda 3 minutos. Si algo resuena, ya sabes qué hacer.
+
+Dylan · ITMANO
+
+URL sugerida: itmano.com/diagnostico/maria-jose
+-->

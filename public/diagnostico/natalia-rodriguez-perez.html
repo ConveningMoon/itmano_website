@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico de captación · Natalia Rodriguez Perez · ITMANO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:         #090e17;
+      --bg-card:    #0e1520;
+      --bg-callout: #0b1828;
+      --border:     rgba(255,255,255,0.06);
+      --text-1:     #dde6f0;
+      --text-2:     #7a8fa8;
+      --text-3:     #3d5268;
+      --blue:       #5ba3e0;
+      --purple:     #a078df;
+      --grad:       linear-gradient(135deg, #5ba3e0, #a078df);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-1);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---- Layout ---- */
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---- Animations ---- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade { opacity: 0; animation: fadeUp .65s ease forwards; }
+    .d1  { animation-delay: .10s; }
+    .d2  { animation-delay: .22s; }
+    .d3  { animation-delay: .34s; }
+    .d4  { animation-delay: .46s; }
+    .d5  { animation-delay: .58s; }
+    .d6  { animation-delay: .70s; }
+    .d7  { animation-delay: .82s; }
+    .d8  { animation-delay: .94s; }
+
+    /* ---- Gradient text util ---- */
+    .gtext {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ---- Header ---- */
+    .header {
+      padding: 52px 0 44px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-logo {
+      height: 28px;
+      display: block;
+      margin-bottom: 36px;
+    }
+
+    /* Fallback text logo if image not loaded */
+    .logo-fallback {
+      height: 28px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 36px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 22px;
+      text-decoration: none;
+    }
+    .logo-fallback span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 40px;
+      border: 1px solid rgba(91,163,224,.25);
+      color: var(--blue);
+    }
+
+    .badge::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .date-label {
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: .06em;
+    }
+
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 5vw, 38px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text-1);
+      margin-bottom: 14px;
+    }
+
+    .header-sub {
+      font-size: 13px;
+      color: var(--text-2);
+      margin-bottom: 28px;
+    }
+
+    /* Divider */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--grad);
+      margin: 28px 0;
+      opacity: .35;
+    }
+
+    /* Tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 11px;
+      color: var(--text-2);
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      padding: 4px 11px;
+      border-radius: 4px;
+      letter-spacing: .04em;
+    }
+
+    /* ---- Stats Strip ---- */
+    .stats-strip {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .stat-cell {
+      background: var(--bg-card);
+      padding: 28px 20px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-cell::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--grad);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .stat-cell:hover::before { opacity: 1; }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 4vw, 34px);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-1);
+      font-weight: 500;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .stat-source {
+      font-size: 10px;
+      color: var(--text-3);
+      letter-spacing: .04em;
+    }
+
+    /* ---- Intro ---- */
+    .intro {
+      padding: 48px 0 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 18px;
+    }
+
+    .intro p {
+      color: var(--text-2);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .intro p:last-child { margin-bottom: 0; }
+
+    .inline-stat {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 600;
+    }
+
+    /* ---- Hallazgos ---- */
+    .hallazgos {
+      padding: 52px 0;
+    }
+
+    .hallazgos-header {
+      margin-bottom: 36px;
+    }
+
+    .hallazgos-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 3vw, 26px);
+      font-weight: 600;
+      color: var(--text-1);
+      margin-top: 10px;
+      line-height: 1.25;
+    }
+
+    /* Finding card */
+    .finding {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 28px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .25s;
+    }
+
+    .finding:hover {
+      border-color: rgba(91,163,224,.18);
+    }
+
+    /* Decorative number */
+    .finding-num {
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      font-family: 'Playfair Display', serif;
+      font-size: 90px;
+      font-weight: 700;
+      line-height: 1;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: .06;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .finding-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      padding: 4px 11px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+
+    .badge-cal  { background: rgba(91,163,224,.10); color: var(--blue); }
+    .badge-adq  { background: rgba(160,120,223,.10); color: var(--purple); }
+    .badge-nur  { background: rgba(91,163,224,.08); color: #7bbfe8; }
+
+    .finding-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(16px, 2.5vw, 20px);
+      font-weight: 600;
+      color: var(--text-1);
+      line-height: 1.3;
+      margin-bottom: 14px;
+    }
+
+    .finding-body {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.8;
+      margin-bottom: 22px;
+    }
+
+    /* Callout */
+    .callout {
+      background: var(--bg-callout);
+      border-left: 3px solid;
+      border-image: var(--grad) 1;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .callout-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 6px;
+    }
+
+    .callout-text {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.7;
+    }
+
+    /* Consequences */
+    .consequences {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .consequences li {
+      font-size: 13px;
+      color: var(--text-2);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.55;
+    }
+
+    .consequences li::before {
+      content: '→';
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ---- CTA ---- */
+    .cta-section {
+      padding: 48px 0 56px;
+      border-top: 1px solid var(--border);
+    }
+
+    .cta-block {
+      position: relative;
+      background: var(--bg-card);
+      border-radius: 14px;
+      padding: 40px 36px;
+      overflow: hidden;
+    }
+
+    /* Gradient border via ::before */
+    .cta-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      padding: 1px;
+      background: var(--grad);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .cta-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 14px;
+    }
+
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 3vw, 24px);
+      font-weight: 600;
+      color: var(--text-1);
+      line-height: 1.3;
+      margin-bottom: 18px;
+    }
+
+    .cta-context {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    .cta-message {
+      background: rgba(91,163,224,.06);
+      border: 1px solid rgba(91,163,224,.15);
+      border-radius: 8px;
+      padding: 20px 22px;
+      font-size: 14px;
+      color: var(--text-1);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .cta-message strong {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cta-firma {
+      font-size: 12px;
+      color: var(--text-3);
+      letter-spacing: .04em;
+    }
+
+    /* ---- Footer ---- */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      height: 20px;
+      opacity: .5;
+    }
+
+    /* Fallback footer logo */
+    .footer-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 15px;
+      opacity: .5;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-label {
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: .06em;
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-cell  { padding: 22px 18px 18px; }
+      .finding    { padding: 24px 20px; }
+      .cta-block  { padding: 30px 22px; }
+      footer { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+
+    <img
+      src="/assets/Logo_Light.png"
+      alt="ITMANO"
+      class="header-logo fade d1"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+    />
+    <div class="logo-fallback fade d1" style="display:none;">
+      <span>ITMANO</span>
+    </div>
+
+    <div class="header-meta fade d2">
+      <span class="badge">Diagnóstico de captación</span>
+      <span class="date-label">Mayo 2026</span>
+    </div>
+
+    <h1 class="header-title fade d3">
+      El agente que está disponible para todos<br/>
+      <em>no está diseñado para nadie</em>
+    </h1>
+
+    <p class="header-sub fade d3">Preparado para Natalia Rodriguez Perez · Agente inmobiliario · España</p>
+
+    <div class="divider fade d4"></div>
+
+    <div class="tags fade d4">
+      <span class="tag">Mercado residencial España</span>
+      <span class="tag">Captación digital</span>
+      <span class="tag">Posicionamiento de agente</span>
+      <span class="tag">Ciclo de conversión</span>
+    </div>
+
+  </header>
+
+
+  <!-- ===== STATS STRIP ===== -->
+  <section class="stats-strip">
+    <div class="stats-grid">
+
+      <div class="stat-cell fade d4">
+        <div class="stat-num">+14,7%</div>
+        <div class="stat-label">Subida anual del precio de vivienda en España</div>
+        <div class="stat-source">Tinsa IMIE · Q1 2026</div>
+      </div>
+
+      <div class="stat-cell fade d5">
+        <div class="stat-num">705K+</div>
+        <div class="stat-label">Compraventas en 2025, máximo desde 2008</div>
+        <div class="stat-source">INE / Betterplace · 2026</div>
+      </div>
+
+      <div class="stat-cell fade d6">
+        <div class="stat-num">3–5%</div>
+        <div class="stat-label">Tasa de conversión media de leads en el sector</div>
+        <div class="stat-source">Fotocasa Blog Profesional · 2026</div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== INTRO ===== -->
+  <section class="intro fade d5">
+    <p class="section-eyebrow">Diagnóstico</p>
+
+    <p>
+      El mercado inmobiliario español opera en 2026 bajo una tensión que no tiene precedentes recientes: los precios crecen a un ritmo de
+      <span class="inline-stat">+14,7%</span> anual (Tinsa, Q1 2026), el volumen de operaciones superó las
+      <span class="inline-stat">705.000 compraventas</span> en 2025, y aun así la tasa de conversión de leads del sector
+      sigue moviéndose en una horquilla del 3 al 5%. Hay demanda. Hay movimiento. Pero el dinero no se distribuye de forma equitativa
+      entre los agentes.
+    </p>
+
+    <p>
+      El mercado no premia la disponibilidad. Premia la relevancia. Un agente que aparece cuando el comprador ya tiene criterio propio
+      no filtra nada —simplemente compite precio abajo con todos los que hacen lo mismo. Lo que distingue a los profesionales que
+      crecen en este ciclo no es que tengan más contactos: es que tienen un sistema que atrae al perfil correcto, lo califica antes de
+      invertir tiempo, y lo trabaja cuando aún no está listo para firmar.
+    </p>
+
+    <p>
+      Los tres hallazgos que siguen no son genéricos. Responden a lo que se observa en el modelo de captación actual y en cómo
+      se posiciona digitalmente este perfil de agente en el mercado español de hoy.
+    </p>
+  </section>
+
+
+  <!-- ===== HALLAZGOS ===== -->
+  <section class="hallazgos">
+
+    <div class="hallazgos-header fade d5">
+      <p class="section-eyebrow">Hallazgos · 3 fricciones detectadas</p>
+      <h2 class="hallazgos-title">Dónde se escapa el pipeline antes de que llegues a conocer al comprador</h2>
+    </div>
+
+    <!-- Hallazgo 1 -->
+    <div class="finding fade d6">
+      <div class="finding-num">1</div>
+      <span class="finding-badge badge-adq">Adquisición</span>
+      <h3 class="finding-title">
+        "¿Buscas asesoramiento? Estoy a tu disposición" es el posicionamiento de quien ya perdió la conversación
+      </h3>
+      <p class="finding-body">
+        Un titular reactivo es la señal más directa de que no hay un sistema de captación detrás. Cuando el mensaje de entrada
+        de un agente es una respuesta a la intención del comprador —en lugar de una propuesta de valor diferenciada— el filtro
+        lo hace el comprador, no el agente. Y el comprador no filtra por calidad: filtra por precio y por quién responde primero.
+        En un mercado donde el precio medio de vivienda nueva supera los <span class="inline-stat">2.440 €/m²</span> (Tinsa, 2026)
+        y la oferta disponible escasea, los compradores con capacidad real de comprar ya llegan con criterio formado. Si la primera
+        impresión digital no los capta antes de que salgan a comparar, el agente entra en la conversación demasiado tarde, cuando
+        la agenda ya la lleva el prospecto.
+      </p>
+      <div class="callout">
+        <div class="callout-label">Lo que cambia si se resuelve</div>
+        <div class="callout-text">
+          Un posicionamiento específico —por zona, por perfil de comprador, por tipo de operación— actúa como filtro pasivo.
+          Quien llega ya viene con intención alineada, lo que comprime el ciclo de cierre y elimina la fricción de las primeras
+          conversaciones sin dirección.
+        </div>
+      </div>
+      <ul class="consequences">
+        <li>Competencia directa con cualquier agente genérico de la plataforma o del portal, sin ventaja diferencial.</li>
+        <li>El comprador serio no identifica al agente como el experto de su situación concreta, sino como una opción más.</li>
+        <li>El esfuerzo de captación crece, pero la calidad de los contactos que llegan no mejora.</li>
+      </ul>
+    </div>
+
+    <!-- Hallazgo 2 -->
+    <div class="finding fade d7">
+      <div class="finding-num">2</div>
+      <span class="finding-badge badge-cal">Calificación</span>
+      <h3 class="finding-title">
+        Sin filtro previo, cada lead consume el mismo tiempo aunque no tenga el mismo perfil ni la misma intención
+      </h3>
+      <p class="finding-body">
+        El modelo de captación generalista —"estoy disponible para cualquiera"— es funcionalmente un embudo sin cuello. Todos los
+        contactos entran por el mismo sitio y reciben la misma atención inicial, independientemente de si son compradores con
+        financiación aprobada o curiosos que empezaron a navegar portales hace dos días. Con una tasa de conversión media sectorial
+        del <span class="inline-stat">3 al 5%</span> (Fotocasa, 2026), eso significa que entre 19 y 32 de cada 33 contactos no
+        van a cerrar. El tiempo invertido en los que no tienen fit real es tiempo que no se invierte en los que sí lo tienen.
+        En una agencia donde la agenda ya viene marcada institucionalmente, el agente individual tiene muy poco margen para recuperar
+        ese tiempo una vez distribuido.
+      </p>
+      <div class="callout">
+        <div class="callout-label">Lo que cambia si se resuelve</div>
+        <div class="callout-text">
+          Un sistema de calificación —incluso básico, con tres o cuatro preguntas clave en el primer punto de contacto— separa al
+          comprador con urgencia real del curioso. Eso no reduce el número de oportunidades: concentra la energía donde existe
+          probabilidad real de cierre, multiplicando la productividad por operación trabajada.
+        </div>
+      </div>
+      <ul class="consequences">
+        <li>Tiempo humano saturado en contactos sin capacidad o sin urgencia de compra.</li>
+        <li>Imposibilidad de hacer seguimiento estructurado cuando el volumen de contactos sin criterio es alto.</li>
+        <li>Los leads con fit real se enfrían mientras el agente atiende a quienes no van a comprar.</li>
+      </ul>
+    </div>
+
+    <!-- Hallazgo 3 -->
+    <div class="finding fade d8">
+      <div class="finding-num">3</div>
+      <span class="finding-badge badge-nur">Nurturing</span>
+      <h3 class="finding-title">
+        Los leads templados —los que no están listos hoy— se pierden porque no hay una ruta de seguimiento propia
+      </h3>
+      <p class="finding-body">
+        En un mercado con ciclos de decisión que pueden extenderse entre 3 y 9 meses, la mayor parte del pipeline útil no está
+        en los contactos que quieren comprar esta semana: está en los que van a comprar en los próximos meses y aún no han
+        decidido con quién. El problema de operar dentro de la estructura de una agencia sin un sistema propio de nurturing es
+        que esos leads templados pasan a un limbo institucional: no hay secuencia de seguimiento personalizada, no hay una
+        cadencia de contacto que mantenga la relación viva, y no hay un mecanismo para saber cuándo ese lead ha madurado lo
+        suficiente para volver a la conversación. Con <span class="inline-stat">705.000+ operaciones</span> cerradas en 2025
+        (INE), hay demanda activa. El riesgo no es la falta de compradores —es que los compradores que no cierran en el primer
+        contacto terminen comprando con otro agente que sí los mantuvo en el radar.
+      </p>
+      <div class="callout">
+        <div class="callout-label">Lo que cambia si se resuelve</div>
+        <div class="callout-text">
+          Una secuencia de nurturing —aunque sea simple, con 4 o 5 puntos de contacto distribuidos en el tiempo— convierte la base
+          de datos de leads fríos en un pipeline vivo. El agente deja de depender exclusivamente de los contactos nuevos del mes
+          y empieza a extraer valor de todo el trabajo de captación ya hecho.
+        </div>
+      </div>
+      <ul class="consequences">
+        <li>Leads que costaron tiempo y esfuerzo se enfrían sin seguimiento y terminan cerrando con otro agente.</li>
+        <li>Sin ruta propia, la base de contactos acumulada no genera valor a lo largo del tiempo.</li>
+        <li>La facturación depende casi exclusivamente de los contactos nuevos del mes, no del sistema construido.</li>
+      </ul>
+    </div>
+
+  </section>
+
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section fade d8">
+    <div class="cta-block">
+
+      <p class="cta-eyebrow">Siguiente paso</p>
+      <h2 class="cta-title">¿Algo de esto resonó con lo que estás viviendo?</h2>
+
+      <p class="cta-context">
+        Este diagnóstico describe patrones reales del mercado español en 2026. Si alguno de los tres frenos de arriba describe
+        algo que ya intuías pero no habías puesto en palabras, hay un lugar donde se trabaja exactamente eso —de forma práctica,
+        con casos reales del sector.
+      </p>
+
+      <div class="cta-message">
+        Si llegaste hasta aquí y algo de esto te pareció lógico, mándame un mensaje con la palabra
+        <strong>'club'</strong> y te envío una invitación a un grupo privado donde compartimos contenido gratuito para crecer
+        en el mercado inmobiliario.
+      </div>
+
+      <p class="cta-firma">Preparado por Dylan Vergara · ITMANO</p>
+
+    </div>
+  </section>
+
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <img
+      src="/assets/Logo_Light.png"
+      alt="ITMANO"
+      class="footer-logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+    />
+    <span class="footer-logo-text" style="display:none;">ITMANO</span>
+    <span class="footer-label">Growth Partner para Real Estate</span>
+  </footer>
+
+</div><!-- /wrap -->
+
+
+<!--
+MENSAJE LINKEDIN — COPIAR Y PERSONALIZAR:
+
+Hola Natalia 👋
+
+Revisé tu perfil y cómo estás posicionada en el mercado y preparé algo concreto para ti.
+
+No es un recurso genérico — son 3 frenos que veo en tu captación actual basándome en lo que está pasando en el mercado inmobiliario español este año.
+
+Está aquí: [URL]
+
+Tarda 3 minutos. Si algo resuena, ya sabes qué hacer.
+
+Dylan · ITMANO
+
+URL sugerida: itmano.com/diagnostico/natalia-rodriguez-perez
+-->
+
+</body>
+</html>
